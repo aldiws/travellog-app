@@ -8,11 +8,16 @@ module.exports = (sequelize, DataTypes) => {
     departureDate: DataTypes.STRING,
     endsDate: DataTypes.STRING
   }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
+    
+
   });
+  Plan_Destination.associate = function(models){
+    Plan_Destination.belongsTo(models.Plan,{
+      foreignKey: 'PlanId'
+    })
+    Plan_Destination.belongsTo(models.Destination,{
+      foreignKey: 'DestinationId'
+    })
+  }
   return Plan_Destination;
 };

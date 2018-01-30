@@ -5,7 +5,7 @@ const Models = require('../models')
 const Plan = Models.Plan
 const Destination = Models.Destination
 const User = Models.User
-const PlanDestinations = Models.PlanDestinations
+const PlanDestination = Models.Plan_Destination
 
 router.get('/', (req, res) => {
   TravelingPlan.findAll()
@@ -36,8 +36,21 @@ router.post('/add', (req, res) => {
     })
 })
 
-router.get('/addDestination/:destinationId/:userId',(req,res)=>{
-    console.log(req.params)  
+router.post('/addDestination/:planId/:userId/:destinationId',(req,res)=>{
+    let addDestination = {
+      PlanId: req.params.planId,
+      DestinationId: req.params.destinationId,
+      UserId: req.params.userId,
+      JoinId: req.params.userId,
+      departureDate: req.body.departureDate,
+      endsDate: req.body.endsDate
+    }
+
+    PlanDestination.create(addDestination).then(()=>{
+      res.redirect('/destination')
+    }).catch((err)=>{
+      res.send(err)
+    })
 })
 
 router.get('/edit/:id', (req, res) => {

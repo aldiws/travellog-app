@@ -46,7 +46,7 @@
     <!-- Header -->
     <div class="header">
         <div class="brand">
-            <a href="home.html" class="brand_font">TravelLog</a>
+            <a href="/" class="brand_font">TravelLog</a>
         </div>
         <div class="hacktiv8Logo">
             <img class="hacktiv8Logo_img" src="img/hacktiv8_logo.png">
@@ -165,22 +165,32 @@
                             </div>
                         </div>
                         <div class="profile_plan_card_mid">
-                            <div class="profile_plan_card_image">
-                                <img src="" alt="">
-                            </div>
-                            <div class="profile_plan_card_image">
-                                <img src="" alt="">
-                            </div>
-                            <div class="profile_plan_card_image">
-                                <img src="" alt="">
-                            </div>
-                            <div class="profile_plan_card_image">
-                                <img src="" alt="">
-                            </div>
+                            <% let count = 1%>
+                            <% let hitungDestination = 0%>
+                            <%planDestination.forEach(dataDestination =>{%>
+                                <%if (dataDestination.PlanId == data.id) { %>
+                                    <%hitungDestination++%>
+                                <%}%>
+                                <%if (dataDestination.PlanId == data.id && count < 5) { %>
+
+                                    <%count++%>
+                                    <div class="profile_plan_card_image">
+                                        <img src="<%=dataDestination.Destination.photo%>" alt="">
+                                    </div>
+                                <%}%>
+                            <%})%>
+                            <%for (let i = 0; i < 5;i++){%>
+                                <%if(count < 5){%>
+                                    <div class="profile_plan_card_image">
+                                        <img src="img/blankImage.jpg" alt="">
+                                    </div>
+                                    <%count++%>
+                                <%}%>
+                            <%}%> 
                         </div>
                         <div class="profile_plan_card_bot">
                             <span class="profile_plan_card_bot_text">Total</span>
-                            <span class="profile_plan_card_bot_text">4</span>
+                            <span class="profile_plan_card_bot_text"><%=hitungDestination%></span>
                         </div>
                     </div>
                     <%})%>
@@ -188,6 +198,7 @@
             </div>
         
         </div>
+       
 
     </div>
     <script>

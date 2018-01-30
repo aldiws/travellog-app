@@ -15,5 +15,16 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  Destination.associate = function(models){
+    Destination.hasMany(models.Plan_Destination,{
+      foreignKey: 'DestinationId'
+    })
+
+    Destination.belongsToMany(models.Plan,{
+      through: 'Plan_Destination',
+      foreignKey: 'DestinationId'
+    })
+  }
   return Destination;
 };

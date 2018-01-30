@@ -19,6 +19,16 @@ module.exports = (sequelize, DataTypes) => {
     Plan.belongsTo(models.User,{
       foreignKey: 'UserId'
     });
+    // One to Many
+    Plan.hasMany(models.Plan_Destination,{
+      foreignKey: 'PlanId',
+    })
+
+    // Many to Many
+    Plan.belongsToMany(models.Destination,{
+      through: 'Plan_Destination',
+      foreignKey: 'PlanId',
+    })
   }
   
   return Plan;
