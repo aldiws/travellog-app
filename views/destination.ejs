@@ -11,7 +11,15 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>        
-        
+        .destination_plan_list{
+            display: inline-block;
+            float: left;
+            width: 100%;
+        }
+
+        .destination_plan_list_date{
+            transform: translateY(-10px)
+        }
     </style>
 
 </head>
@@ -120,7 +128,8 @@
                                 <a href="" class="destination_card_content_title_font"><%=data.name%></a>
                             </div>
                             <div class="destination_card_content_location">
-                                <a href="/profile/:id" class="destination_card_content_location_font"><%=data.specificLocation%>, <%=data.province%></a>
+                                <a href="search/destination/<%=data.specificLocation%>" class="destination_card_content_location_font"><%=data.specificLocation%>,</a> 
+                                <a href="search/destination/<%=data.province%>" class="destination_card_content_location_font"><%=data.province%></a>
                             </div>
                             <div class="destination_card_content_category">
                                 <a href="" class="destination_card_content_category_font"><%=data.category%></a>
@@ -134,10 +143,14 @@
                                         </div>
                                         <div class="pop_up_plan_list">
                                             <%showUserPlan.forEach(userPlan=>{%>
-                                                <div class="pop_up_plan">
-                                                    <h4 class="pop_up_plan_list_font"><%=userPlan.title%></h4>
-                                                    <a href="/plan/addDestination/<%=userPlan.id%>/<%=userPlan.UserId%>/" class="pop_up_plan_icon" ><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                                </div>  
+                                                <form action="/plan/addDestination/<%=userPlan.id%>/<%=userPlan.UserId%>/<%=data.id%>" method="post" class="destination_plan_list">
+                                                    <div class="pop_up_plan">
+                                                        <h4 class="pop_up_plan_list_font"><%=userPlan.title%></h4>
+                                                        <button class="pop_up_plan_icon"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                        <input type="date" name="departureDate" class="destination_plan_list_date">
+                                                        <input type="date" name="endsDate" class="destination_plan_list_date">
+                                                    </div>  
+                                                </form>
                                             <%})%>
                                             
                                         </div>
