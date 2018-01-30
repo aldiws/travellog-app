@@ -1,0 +1,1334 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* Header */
+.header{
+    background-color: #191919;
+    color: #fff;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    line-height: 70px;
+    padding: 0 1%;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.header .brand{
+    display: inline-block;
+    line-height: 70px;
+    position: relative;
+    float: left;
+    width: 33.3%;
+}
+
+.brand_font{
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.hacktiv8Logo{
+    display: inline-block;
+    float: left;
+    width: 33.3%;
+    text-align: center;
+}
+.hacktiv8Logo img{
+    width: 18%;
+    display: block;
+    margin: 7px auto;
+}
+
+.head_navigation{
+    width: 33.3%;
+    display: inline-block;
+    float: left;
+    line-height: 70px;
+}
+
+.head_navigation_button{
+    float: left;
+    display: inline-block;
+    margin: 0 4%;
+    font-size: 1.4em;
+    float: right;
+    color: white;
+}
+
+.head_navigation_button:hover{
+    cursor: pointer;
+}
+
+/* Wrapper Body Conten */
+    .wrapper_bodycontent{
+        width: 100%;
+        position: absolute;
+        top: 70px;
+    }
+
+/* Search Section */
+.search_section{
+    width: 100%;
+    height: 210px;
+}
+
+/* Search Banner */
+
+    .search_section_banner{
+        position: absolute;
+        width: inherit;
+        height: inherit;
+        opacity: 1;
+        transition: all 1s;
+    }
+
+    .search_section_banner_inside{
+        position: relative;
+        width: inherit;
+        height: inherit;
+    }
+
+    .search_section_banner_image{
+        background-color: #8b9db1;
+        position: absolute;
+        width: inherit;
+        height: inherit;
+    }
+
+    .search_section_banner_message{
+        position: fixed;
+        width: inherit;
+        height: inherit;
+    }
+
+    .search_section_banner_message_font{
+        font-size: 4em;
+        letter-spacing: 1px;
+        width: 64%;
+        font-weight: 700;
+        margin: 31px auto;
+        text-align: center;
+        color: white;
+    }
+
+/* Search BOX */
+    .search_section_box{
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        opacity: 0;
+        transition: all .5s;
+    }
+
+    .search_section_box_inside{
+        display: inline-block;
+        font-size: 40px;
+        line-height: 50px;
+        border: none;
+        overflow: hidden;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+        width: inherit;
+        height: inherit;
+        font-weight: 500;
+        outline: none;
+    }
+    .search_section_box_inside:placeholder-shown{
+        text-align: center;
+        opacity: 0.5;
+        letter-spacing: 3px;
+    }
+
+/* profile_content */
+.profile_content{
+    width: 100%;
+    padding: 3em 5.5em;
+    box-sizing: border-box;
+    position: absolute;
+    background-color: #f9f9f9;
+}
+
+.profile_content_inside{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 1em;
+    position: relative;
+}
+
+.profile_content_inside_card{
+    width: 13em;
+    display: inline-block;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+    border-radius: 5px;
+    
+}
+
+/* head_nav_profile_expand */
+
+.head_nav_profile_expand{
+    width: 24%;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(25,25,25,0.3);
+    padding: 1em 0;
+    box-sizing: border-box;
+    position: absolute;
+    text-align: left;
+    z-index: 100;
+    background-color: #fff;
+    color: #191919;
+    top: calc(100% - 15px);
+    left: auto;
+    right: 84px;
+    height: 230px;
+    visibility:hidden;
+    opacity:0;
+    transition: visibility 0s linear 0.1s,opacity 0.25s linear;
+}
+
+.hnpe_top{
+    width: 100%;
+    display: inline-block;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 0 1em;
+    box-sizing: border-box;
+}
+
+.hnpe_top_name{
+    line-height: 1.3;
+    overflow-x: scroll;
+    text-overflow: ellipsis;
+    float: left;
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 1.2em;
+    font-weight: 700;
+    width: calc(100% - 88px);
+}
+
+.hnpe_top_email{
+    line-height: 1.3;
+    overflow-x: scroll;
+    text-overflow: ellipsis;
+    float: left;
+    display: inline-block;
+    white-space: nowrap;
+    font-size: .9em;
+    font-weight: 100;
+    color: dimgrey;
+    width: calc(100% - 88px);
+}
+
+.hnpe_top_seeAll{
+    line-height: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: left;
+    display: inline-block;
+    white-space: nowrap;
+    font-size: .9em;
+    font-weight: 100;
+    color: inherit;
+    text-decoration: none;
+}
+
+.hnpe_top_seeAll:hover{
+    text-decoration: underline;
+}
+
+.hnpe_top_image{
+    float: left;
+    height: 70px;
+    margin-right: 14px;
+    min-height: 65px;
+    min-width: 65px;
+    width: 70px;
+}
+
+.hnpe_top_image img{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.hnpe_mid{
+    width: 100%;
+    display: inline-block;
+    margin-top: -15px;
+}
+
+.hnpe_mid_text{
+    width: 100%;
+    display: inline-block;
+    float: left;
+    line-height: 2;
+    text-decoration: none;
+    color: inherit;
+    padding: 0 1em;
+    box-sizing: border-box;
+}
+
+.hnpe_icon{
+    display: inline-block;
+    float: left;
+    margin-right: 12px;
+    font-size: 1em;
+    line-height: 2;
+}
+
+.hnpe_mid_text_font{
+    font-size: 1em;
+    display: inline-block;
+    float: left
+}
+
+.hnpe_mid_text:hover{
+    background-color: rgb(231, 231, 231);
+}
+
+.head_navigation_nest:hover > .head_nav_profile_expand{
+    visibility:visible;
+    opacity:1;
+}
+
+#pop_up_button_profile:hover{
+    cursor: pointer;
+}
+
+/* Card Detail */
+.card_content_image{
+    width: 100%;
+    position: relative;
+    border-radius: 5px 5px 3px 3px;
+    overflow: hidden;
+}
+
+.card_content_image img{
+    width: 100%;
+    display: block;
+}
+
+.card_content{
+    width: 100%;
+    padding: 0 4%;
+    box-sizing: border-box;
+}
+
+.card_content_title{
+    margin-top: 10px;
+    height: 38px;
+}
+
+.card_content_title_font{
+    font-size: .9em;
+    font-weight: 700;
+    letter-spacing: .8px;
+    color: #191919;
+    text-decoration: none;
+    line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card_content_title_font:hover{
+    text-decoration: underline;
+}
+
+.card_content_userName{
+    margin-top: 3px;
+    height: 25px;
+}
+
+.card_content_userName_font{
+    font-size: .8em;
+    font-weight: 500;
+    letter-spacing: .8px;
+    color: #191919;
+    text-decoration: none;
+    line-height: 1.15;
+    overflow: hidden;
+}
+
+.card_content_userName_font:hover{
+    text-decoration: underline;
+}
+
+.card_content_gap{
+    width: 100%;
+    height: 20px;
+}
+
+.card_content_hr{
+    width: 14px;
+    opacity: .5;
+    float: left;
+}
+
+.card_content_category{
+    position: relative;
+    height: 24px;
+}
+
+.card_content_category_font{
+    font-size: .75em;
+    font-weight: 500;
+    color: #191919;
+    text-decoration: none;
+    line-height: 1.15;
+    float: left;
+    overflow: hidden;
+}
+
+.card_content_footer{
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    border-top: 1px #f2f2f2 solid;
+}
+
+.card_content_viewAll{
+    font-size: .75em;
+    color: #191919;
+    text-decoration: none;
+    float: left;
+    display: inline-block;
+    font-weight: 700;
+    margin-right: 18px;
+}
+
+.card_content_viewAll:hover{
+    text-decoration: underline;
+}
+
+.card_content_join{
+    font-size: 1em;
+    color: #a4a4a4;
+    margin-right: 3px;
+}
+
+.card_content_join_number{
+    font-size: .8em;
+}
+
+.card_content_date{
+    font-size: .8em;
+    float: right;
+}
+
+.pop_up_addto{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    top: 0;
+    left: 0;
+    background: #fff;
+    opacity:0;
+    padding: 1em 0;
+    visibility: hidden;
+    transition: visibility 0s linear 0.1s,opacity 0.25s linear;
+    box-sizing: border-box;
+}
+
+.destination_card{
+    display: inline-block;
+    float: left;
+}
+
+.destination_card:hover > .pop_up_addto{
+    visibility:visible;
+    opacity:1;
+}
+
+.pop_up_addto_title{
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: center;
+    border-bottom: 1px solid #f3f0f0;
+}
+
+.pop_up_addto_title_font{
+    font-size: 1em;
+    letter-spacing: 1px;
+}
+
+.pop_up_plan_list{
+    display: inline-block;
+    width: 100%;
+}
+
+.pop_up_plan{
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    padding: 0 1em;
+    box-sizing: border-box;
+}
+
+.pop_up_plan:hover{
+    background-color: rgb(231, 231, 231);
+}
+
+.pop_up_plan_list_font{
+    font-size: 1em;
+    display: inline-block;
+    width: 80%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.pop_up_plan_icon{
+    float: right;
+    display: inline-block;
+    font-size: 1em;
+    line-height: 35px;
+    color: inherit;
+}
+
+
+/* LOGIN PAGE */
+
+.login_container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #fdfdfd;
+}
+
+.login_container_content{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo_content_login{
+    display: block;
+}
+
+.logo_content_signup{
+    display: none;
+}
+
+.login_box_main{
+    width: 25em;
+    text-align: center;
+    border: 1px solid #efefef;
+    background: #fff;
+    padding: 2em 3.2em;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+}
+
+
+.loginPage_box_logo{
+    margin-bottom: 45px;
+}
+
+.loginPage_box_logo_font{
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.login_page_form{
+    width: 100%;
+    display: inline-block;
+}
+
+.login_input{
+    outline: none;
+    width: 100%;
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 0 1em;
+    box-sizing: border-box;
+    overflow: scroll;
+    height: 4em;
+    border: 1px solid #efefef;
+    overflow: hidden;
+    background-color: #fafafa;
+    vertical-align: middle;
+    white-space: nowrap;
+    background: #fafafa;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.login_input:focus{
+    border: 1px solid rgb(95, 95, 95);
+}
+
+.login_button{
+    width: 100%;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 20px 0 40px;
+    padding: 0 1em;
+    box-sizing: border-box;
+    overflow: scroll;
+    height: 3em;
+    border: 1px solid #efefef;
+    background-color: #3897f0;
+    font-size: 1em;
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.login_button:hover{
+    cursor: pointer;
+}
+
+.or_nest{
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.or_nest_line_left{
+    display:  inline-block;
+    float: left;
+    text-align: center;
+    height: 1px;
+    background-color: grey;
+    width: 40%;
+}
+
+.or_nest_text{
+    display: inline-block;
+    text-align: center;
+    width: 22px;
+    margin: -8px auto 0px auto;
+    vertical-align: top;
+}
+
+.or_nest_line_right{
+    display:  inline-block;
+    float: right;
+    height: 1px;
+    background-color: grey;
+    width: 40%;
+}
+
+.forgot_password_font{
+    font-size: 1em;
+    letter-spacing: .5px;
+    text-decoration: none;
+}
+
+.forgot_password_font:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login_box_bot{
+    font-size: 1em;
+    display: inline-block;
+    float: left;
+    letter-spacing: 0;
+    width: 25em;
+    padding: 1em 3.2em;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid #efefef;
+}
+
+.login_box_bot_link{
+    font-size: 1em;
+    color: #3897f0;
+    text-decoration: none;
+}
+
+.login_box_bot_link:hover{
+    cursor: pointer;
+}
+
+
+/* Sign Up */
+
+.signup_box_main{
+    width: 25em;
+    text-align: center;
+    border: 1px solid #efefef;
+    padding: 2em 3.2em;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+}
+
+.signup_page_form{
+    width: 100%;
+    display: inline-block;
+}
+
+.signup_input{
+    outline: none;
+    width: 100%;
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 0 1em;
+    box-sizing: border-box;
+    overflow: scroll;
+    height: 4em;
+    border: 1px solid #efefef;
+    background: red;
+    overflow: hidden;
+    vertical-align: middle;
+    white-space: nowrap;
+    background: #fafafa;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.signup_input:focus{
+    border: 1px solid rgb(95, 95, 95);
+}
+
+.signup_button{
+    width: 100%;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 20px 0 0;
+    padding: 0 1em;
+    box-sizing: border-box;
+    overflow: scroll;
+    height: 3em;
+    border: 1px solid #efefef;
+    background-color: #3897f0;
+    font-size: 1em;
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.signup_box_bot{
+    font-size: 1em;
+    display: inline-block;
+    float: left;
+    letter-spacing: 0;
+    width: 25em;
+    padding: 1em 3.2em;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid #efefef;
+}
+
+.signup_box_bot_link{
+    font-size: 1em;
+    color: #3897f0;
+    text-decoration: none;
+}
+
+.signup_box_bot_link:hover{
+    cursor: pointer;
+}
+
+
+/* Destination */
+
+.destination_content{
+    width: 100%;
+    padding: 3em 5.5em;
+    box-sizing: border-box;
+    position: absolute;
+    background-color: #f9f9f9;
+}
+
+.destination_content_inside{
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 1em;
+}
+
+.destination_content_inside_card{
+    width: 13em;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+    border-radius: 5px;
+    position: relative;
+}
+
+.destination_card_content_image{
+    width: 100%;
+    position: relative;
+    border-radius: 5px 5px 3px 3px;
+    overflow: hidden;
+}
+
+.destination_card_content_image img{
+    width: 100%;
+    display: block;
+}
+
+.destination_card_content{
+    width: 100%;
+    padding: 0 4%;
+    box-sizing: border-box;
+}
+
+.destination_card_content_title{
+    margin-top: 5px;
+    height: 20px;
+}
+
+.destination_card_content_title_font{
+    font-size: .9em;
+    font-weight: 700;
+    letter-spacing: .8px;
+    color: #191919;
+    text-decoration: none;
+    line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.destination_card_content_title_font:hover{
+    text-decoration: underline;
+}
+
+.destination_card_content_location{
+    margin-top: 5px;
+    height: 20px;
+}
+
+.destination_card_content_location_font{
+    font-size: .8em;
+    font-weight: 500;
+    letter-spacing: .8px;
+    color: #191919;
+    text-decoration: none;
+    line-height: 1.15;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.destination_card_content_location_font:hover{
+    text-decoration: underline;
+}
+
+.destination_card_content_category{
+    position: relative;
+    height: 20px;
+    margin-top: 5px;
+}
+
+.destination_card_content_category_font{
+    font-size: .8em;
+    font-weight: 500;
+    color: #191919;
+    text-decoration: none;
+    line-height: 1.15;
+    float: left;
+    overflow: hidden;
+}
+
+.destination_card_content_footer{
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    border-top: 1px #f2f2f2 solid;
+}
+
+.destination_card_content_explored{
+    width: 55%;
+    display: inline-block;
+    font-size: 0.8em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-decoration: none;
+    color: #464646;
+    float: left;
+}
+
+.destination_card_right{
+    display: inline-block;
+    float: right;
+    line-height: 36px;
+}
+
+.destination_card_add{
+    display: inline-block;
+    float: right;
+    font-size: .8em;
+    color: #464646;
+    text-decoration: none;
+}
+
+.destination_card_add:hover{
+    text-decoration: underline;
+}
+
+
+/* Modal - Create Plan */
+.modal_addPlan{
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+    transform: translate(0,-120%);
+    transition: all 1s ease;
+}
+
+.modal_container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal_container_box{
+    width: 45em;
+    text-align: center;
+    border: 1px solid #efefef;
+    background: #fff;
+    padding: 2em 3.2em;
+    box-sizing: border-box;
+}
+
+.modal_container_box_top{
+    border-bottom: 1px solid #efefef;
+}
+
+.modal_container_box_top_font{
+    font-size: 2em;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.modal_plan_form{
+    width: 100%;
+    margin-top: 2em;
+}
+
+.modal_createPlan_input_title{
+    display: inline-block;
+    width: 100%;
+    border-radius: 2px;
+    height: 4em;
+    border: 1px solid #777777;
+    padding: 0 1em;
+    box-sizing: border-box;
+    font-size: 1em;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.modal_createPlan_input_description{
+    display: inline-block;
+    width: 100%;
+    border-radius: 2px;
+    height: 8em;
+    border: 1px solid #777777;
+    padding: .5em 1em;
+    box-sizing: border-box;
+    font-size: 1em;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.form_three_line{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 1em;
+}
+
+.modal_form_three_line_box{
+    height: 3em;
+    border-radius: 2px;
+    outline: none;
+    border: 2px solid #777777;
+    padding: 0 .7em;
+}
+
+.modal_addFriend{
+    margin: auto;
+    padding: 0 1em;
+    border: 1px solid;
+    line-height: 34px;
+    border: 1px solid #777777;
+    border-radius: 2px;
+}
+
+.modal_addFriend_button{
+    color: inherit;
+}
+
+.modal_plan_bottom{
+    margin-top: 30px;
+    width: 100%;
+    display: inline-block
+}
+
+.modal_plan_bottom_execute{
+    font-size: 1em;
+    float: left;
+    display: inline-block;
+    padding: .5em;
+    border-radius: 4px;
+    border: 1px solid #efefef;
+    background-color: #3897f0;
+    font-size: .9em;
+    color: #fff;
+    letter-spacing: 1px;
+    height: 2.5em;
+    font-weight: 500;
+    padding: 0 1em;
+    margin-right: 15px;
+}
+
+.modal_plan_bottom_cancle{
+    font-size: 1em;
+    float: left;
+    display: inline-block;
+    padding: .5em;
+    border-radius: 4px;
+    border: 1px solid #efefef;
+    background-color: #fff;
+    font-size: .9em;
+    color: #3897f0;
+    letter-spacing: 1px;
+    height: 2.5em;
+    font-weight: 500;
+    padding: 0 1em;
+    margin-right: 15px;
+    line-height: 38px;
+}
+
+.departure_date_modal{
+    text-align: left;
+    font-size: 1em;
+}
+
+/* Profile */
+
+.wrapper_content_profile{
+    padding: 0em 8em;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    top: 70px;
+    box-sizing: border-box;
+}
+
+.profile_content_container{
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    clear: both;
+    margin-bottom: 0;
+    min-height: 800px;
+    position: relative;
+    padding-bottom: 50px;
+    width: 100%;
+}
+
+.profile_info{
+    background: #fafafa;
+    padding: 4em 8em 2em;
+    width: 100%;
+    border-bottom: 1px solid #e8e8e8;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: -4px;
+}
+
+.users_photo{
+    display: inline-block;
+    float: left;
+    margin-right: 60px;
+    width: 20%;
+}
+
+.users_photo img{
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.users_info{
+    width: 60%;
+    display: inline-block;
+    float: left;
+}
+
+.users_info_name{
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.users_info_name_font{
+    line-height: 1.3;
+    overflow-x: scroll;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.7em;
+    font-weight: 300;
+    letter-spacing: .5px;
+}
+
+.users_info_status{
+    display: inline-block;
+    width: 100%;
+    line-height: 30px;
+    margin-bottom: 15px;
+}
+
+.accomplished_status{
+    display: inline-block;
+    float: left;
+    margin-right: 50px;
+}
+
+.accomplished_status_fixed_numbers{
+    font-size: 1.2em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.accomplished_status_fixed_text{
+    font-size: 1em;
+}
+
+.users_info_travelStyle_font{
+    display: inline-block;
+    font-size: 1.1em;
+    float: left;
+}
+
+.users_info_travelStyle_fixed{
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+/* Profile_inner */
+
+.profile_nav_inner{
+    height: 54px;
+    line-height: 52px;
+    padding: 0 2em;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #e8e8e8;
+    box-sizing: border-box;
+}
+
+.provile_nav_inner_font{
+    margin: 0 15px;
+    color: #6f6f6f;
+    font-size: 1.1em;
+    display: inline-block;
+    font-weight: 300;
+}
+
+.provile_nav_inner_font:hover{
+    cursor: pointer;
+    border-bottom: 1px solid #6f6f6f;
+}
+
+/* Profile Content Accomplished */
+
+.profile_user_content{
+    width: 100%;
+    padding: 3em;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+.profile_user_inside{
+    width: 100%;
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 1em;
+    position: relative;
+}
+
+.profile_user_content_inside_card{
+    width: 13.7em;
+    display: inline-block;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+    border-radius: 5px;
+}
+
+.card_user_content_image{
+    width: 100%;
+    position: relative;
+    border-radius: 5px 5px 3px 3px;
+    overflow: hidden;
+}
+
+.card_user_content_image img{
+    width: 100%;
+    display: block;
+}
+
+.card_user_content{
+    width: 100%;
+    padding: 0 4%;
+    box-sizing: border-box;
+}
+
+.card_user_content_title{
+    margin-top: 10px;
+    height: 38px;
+}
+
+.card_user_content_title_font{
+    font-size: .9em;
+    font-weight: 700;
+    letter-spacing: .8px;
+    color: #191919;
+    text-decoration: none;
+    line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card_user_content_userName{
+    margin-top: 3px;
+    height: 25px;
+}
+
+.card_user_content_userName_font{
+    font-size: .8em;
+    font-weight: 500;
+    letter-spacing: .8px;
+    color: #191919;
+    text-decoration: none;
+    line-height: 1.15;
+    overflow: hidden;
+}
+
+.card_user_content_gap{
+    width: 100%;
+    height: 20px;
+}
+
+.card_user_content_hr{
+    width: 14px;
+    opacity: .5;
+    float: left;
+}
+
+.card_user_content_category{
+    position: relative;
+    height: 24px;
+}
+
+.card_user_content_category_font{
+    font-size: .75em;
+    font-weight: 500;
+    color: #191919;
+    text-decoration: none;
+    line-height: 1.15;
+    float: left;
+    overflow: hidden;
+}
+
+/* Profile PLAN */
+
+.profile_plan_inside{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 4em;
+    position: relative;
+}
+
+.profile_plan_card{
+    width: 27em;
+    display: inline-block;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+    border-radius: 5px;
+}
+
+.profile_plan_card_top{
+    width: 100%;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.profile_plan_card_title{
+    margin-bottom: 5px;
+}
+
+.profile_plan_card_title_font{
+    font-size: 1.2em;
+    font-weight: 700;
+    letter-spacing: .5px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.profile_plan_card_date_font{
+    font-size: .9em;
+    font-weight: 500;
+    letter-spacing: .5px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.profile_plan_card_mid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: .1em;
+}
+
+.profile_plan_card_image{
+    width: 100%;
+    box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+}
+
+.profile_plan_card_image img{
+    width: 100%;
+    display: block;
+}
+
+.profile_plan_card_bot{
+    display: inline-block;
+    width: 100%;
+    padding: 1em;
+}
+
+.profile_plan_card_bot_text{
+    font-size: 1em;
+    margin-right: 5px;
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Destination Page</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/05e7c788bc.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>        
+        
+    </style>
+
+</head>
+<body>
+    <div class="modal_addPlan">
+        <div class="modal_container">
+            <div class="modal_container_box">
+                <div class="modal_container_box_top">
+                    <h4 class="modal_container_box_top_font">Add Plan</h4>
+                </div>
+                <form class="modal_plan_form" action="/plan/add" method="post">
+                    <input type="text" name="title" class="modal_createPlan_input_title" placeholder="Whats theme on your mind?">
+                    <textarea type="text" name="planDescription" class="modal_createPlan_input_description" placeholder="Tell your plan description"></textarea>
+                    <div class="form_three_line">
+                        <div class="departure_date_modal">
+                            <span class="date_modal_font">Departure Date</span>
+                            <input type="date" name="departureDate" class="modal_form_three_line_box" placeholder="Departure Date">
+                        </div>
+                        <div class="departure_date_modal">
+                            <span class="date_modal_font">Ends Date</span>
+                            <input type="date" name="endsDate" class="modal_form_three_line_box" placeholder="Ends Date">
+                        </div>
+                        
+                    </div>
+                    <div class="modal_plan_bottom">
+                        <button class="modal_plan_bottom_execute">Create</button>
+                        <button type="button" id="close_modal" class="modal_plan_bottom_cancle">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Header -->
+    <div class="header">
+        <div class="brand">
+            <a href="home.html" class="brand_font">TravelLog</a>
+        </div>
+        <div class="hacktiv8Logo">
+            <img class="hacktiv8Logo_img" src="img/hacktiv8_logo.png">
+        </div>
+        <div class="head_navigation">
+            <a class="head_navigation_button" href=""><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            
+            <div class="head_navigation_nest">
+                <a class="head_navigation_button head_nav_profile" href="/profile/<%=userData.id%>"><i class="fa fa-user" aria-hidden="true"></i>
+                    <div class="head_nav_profile_expand">
+                        <div class="hnpe_top">
+                            <div class="hnpe_top_image"></a><img src="<%=userData.photo_profile%>" alt=""></div>
+                            <span class="hnpe_top_name"><%=userData.firstName%> <%=userData.lastName%></span>
+                            <span class="hnpe_top_email"><%=userData.email%></span>
+                            <a href="/profile/<%=userData.id%>" class="hnpe_top_seeAll">See Profile</a>
+                        </div>
+                        <div class="hnpe_mid">
+                            <a href="" class="hnpe_mid_text">
+                                <i class="fa fa-pencil hnpe_icon" aria-hidden="true"></i>
+                                <h3 class="hnpe_mid_text_font">Edit Profile</h3>
+                            </a>
+                            <a class="hnpe_mid_text" id="pop_up_button_profile">
+                                <i class="fa fa-plus hnpe_icon" aria-hidden="true"></i>   
+                                <h3 class="hnpe_mid_text_font">Create Plan</h3>
+                            </a>
+                            <a href="" class="hnpe_mid_text">
+                                <i class="fa fa-sign-out hnpe_icon" aria-hidden="true"></i>
+                                <h3 class="hnpe_mid_text_font">Sign Out</h3>
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <a class="head_navigation_button" id="head_nav_add"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a class="head_navigation_button" href="/"><i class="fa fa-users" aria-hidden="true"></i></a>
+            <a onclick="topFunction()" id="head_nav_search" class="head_navigation_button"><i class="fa fa-search" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    
+
+    <!-- Destination Body Content -->
+    <div class="wrapper_bodycontent">
+        <!-- Search Section -->
+        <section class="search_section">
+            <div class="search_section_banner">
+                <div class="search_section_banner_inside">
+                    <div class="search_section_banner_image">
+                         <img src="img/HomeBanner.jpg">
+                    </div>
+                    <div class="search_section_banner_message">
+                        <h2 class="search_section_banner_message_font">Explore & Discover Valuable Destination</h2>
+                    </div>
+                </div>  
+            </div>
+            <form class="search_section_box" action="/dashboard/search" method="post">
+                <input class="search_section_box_inside" type="text" name="key_search" placeholder="Search Destination by..." autocomplete="off"/>
+            </form>
+        </section>
+
+        <!-- Gallery -->
+        <section class="destination_content">
+            <div class="destination_content_inside">
+                <%showData.forEach(data =>{%>
+                    <div class="destination_content_inside_card">
+                        <div class="destination_card_content_image">
+                            <img src="<%=data.photo%>" alt="">
+                        </div>
+                        <div class="destination_card_content">
+                            <div class="destination_card_content_title">
+                                <a href="" class="destination_card_content_title_font"><%=data.name%></a>
+                            </div>
+                            <div class="destination_card_content_location">
+                                <a href="/profile/:id" class="destination_card_content_location_font"><%=data.specificLocation%>, <%=data.province%></a>
+                            </div>
+                            <div class="destination_card_content_category">
+                                <a href="" class="destination_card_content_category_font"><%=data.category%></a>
+                            </div>
+                            <div class="destination_card_content_footer">
+                                <div class="destination_card">
+                                    <a href="" class="destination_card_add">Add to plan</a>
+                                    <div class="pop_up_addto">
+                                        <div class="pop_up_addto_title">
+                                            <h4 class="pop_up_addto_title_font">Add to Plan</h4>
+                                        </div>
+                                        <div class="pop_up_plan_list">
+                                            <%showUserPlan.forEach(userPlan=>{%>
+                                                <div class="pop_up_plan">
+                                                    <h4 class="pop_up_plan_list_font"><%=userPlan.title%></h4>
+                                                    <a href="/plan/addDestination/<%=userPlan.id%>/<%=userPlan.UserId%>/" class="pop_up_plan_icon" ><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                </div>  
+                                            <%})%>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <%})%>
+            </div>
+        </section>
+    </div>
+    <script>
+
+        $(document).ready(function(){
+            $("#head_nav_search").click(function(){
+                $(".search_section_banner").css("opacity","0")
+                $(".search_section_box").css('opacity','1')
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            });
+
+            $('#head_nav_add').click(function(){
+                $('body').css('overflow','hidden')
+                $('.modal_addPlan').css('transform','translate(0,0)')
+            })
+
+            $('.modal_plan_bottom_cancle').click(function(){
+                $('body').css('overflow','scroll')
+                $('.modal_addPlan').css('transform','translate(0,-120%)')
+            })
+
+            $('#pop_up_button_profile').click(function(){
+                $('body').css('overflow','hidden')
+                $('.modal_addPlan').css('transform','translate(0,0)')
+            })
+
+            
+            
+        });
+
+
+        var target = $('.search_section_banner_message_font');
+        var targetHeight = target.outerHeight();
+
+        $(document).scroll(function(){
+            var scrollPercent = (targetHeight - window.scrollY) / targetHeight;
+            if(scrollPercent >= 0){
+                target.css('opacity', scrollPercent);
+            }
+
+            if(targetHeight < window.scrollY){
+                target.css('opacity','0')
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>
