@@ -1,0 +1,42 @@
+<script>
+    $(document).ready(function () {
+        $("#head_nav_search").click(function () {
+            $(".search_section_banner").css("opacity", "0")
+            $(".search_section_box").css('opacity', '1')
+            $("html, body").animate({
+                scrollTop: 0
+            }, "slow");
+        });
+
+        $('#head_nav_add').click(function () {
+            $('body').css('overflow', 'hidden')
+            $('.modal_addPlan').css('transform', 'translate(0,0)')
+        })
+
+        $('.modal_plan_bottom_cancle').click(function () {
+            $('body').css('overflow', 'scroll')
+            $('.modal_addPlan').css('transform', 'translate(0,-120%)')
+        })
+
+        $('#pop_up_button_profile').click(function () {
+            $('body').css('overflow', 'hidden')
+            $('.modal_addPlan').css('transform', 'translate(0,0)')
+        })
+
+    });
+
+
+    var target = $('.search_section_banner_message_font');
+    var targetHeight = target.outerHeight();
+
+    $(document).scroll(function () {
+        var scrollPercent = (targetHeight - window.scrollY) / targetHeight;
+        if (scrollPercent >= 0) {
+            target.css('opacity', scrollPercent);
+        }
+
+        if (targetHeight < window.scrollY) {
+            target.css('opacity', '0')
+        }
+    });
+</script>
