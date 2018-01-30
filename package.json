@@ -1,0 +1,27 @@
+{
+  "name": "travel-log-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldiws/travel-log-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aldiws/travel-log-app/issues"
+  },
+  "homepage": "https://github.com/aldiws/travel-log-app#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "path": "^0.12.7",
+    "pg": "^6.4.2",
+    "sequelize": "^4.32.2"
+  }
+}
