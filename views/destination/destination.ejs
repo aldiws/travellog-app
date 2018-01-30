@@ -47,9 +47,11 @@
                                 </a>
                             </div>
                             <div class="destination_card_content_footer">
-                                        
+                                
+                                if(user)
                                 <a href="/destination/edit/<%=destination.id %>" class="destination_card_content_explored">Edit</a>
                                 <a href="/destination/delete/<%=destination.id %>" class="destination_card_content_explored">Delete</a>
+
                                     <div class="destination_card">
                                         <a href="" class="destination_card_add">Add to plan</a>
                                         <div class="pop_up_addto">

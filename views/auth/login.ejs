@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>auth</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://use.fontawesome.com/05e7c788bc.js"></script>
     <link rel="stylesheet" href="css/style.css">    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/05e7c788bc.js"></script>    
+    <title>TravelLog</title>
 </head>
 <body>
     <div class="login_container">
-        <div class="login_container_content">
-
+        <div class="login_container_content">              
             <div class="logo_content_login">
                 <div class="login_box_main">
                     <div class="loginPage_box_logo">
@@ -28,10 +27,20 @@
                                 <div class="or_nest_line_right"></div>
                             </div>
                             <div class="forgot_password">
-                                <span class="forgot_password_font">Forgot password?</span>
+                                <span class="forgot_password_font">Forgot password?</span><br>                      
                             </div>
-                        </form>
+                        </form>  
+                        
+                        <% if (typeof flashMessage !== 'undefined') { %>
+                            <div id="flash_login"> <%= flashMessage %></div>
+                            <script>
+                              $(function() {
+                                $('#flash_login').delay(3000).fadeOut(1000);
+                              });
+                            </script>
+                          <% } %>
                 </div>
+                
                 <div class="login_box_bot">Dont't have any account?
                     <span class="login_box_bot_link">Sign up</span>
                 </div>
@@ -53,6 +62,14 @@
                         <button class="signup_button">Sign Up</button>
                     </form>            
                 </div>
+                <% if (error) { %>
+                    <div id="error" > <%= error.message %></div>                 
+                    <script>
+                        $(function() {
+                          $('#error').delay(3000).fadeOut(1000);
+                        });
+                      </script>                          
+                <% } %>                
 
                 <div class="signup_box_bot">Already have an account?
                     <span class="signup_box_bot_link">Login</span>

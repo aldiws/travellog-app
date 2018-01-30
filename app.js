@@ -17,7 +17,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/auth/', express.static(path.join(__dirname + '/public')));
 app.use('/profile/', express.static(path.join(__dirname + '/public')));
 
 // body parser middleware

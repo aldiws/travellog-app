@@ -6,7 +6,7 @@ const Op = require('sequelize').Op
 
 router.get('/', (req, res, next) => {
   res.render('auth/login', {
-    title: 'Login',    
+    title: 'TravelLog',    
     section: 'auth',
     error: null,
   })
@@ -54,7 +54,7 @@ router.get('/logout', (req, res, next) => {
       res.flash('You Logged Out')
       res.redirect('/')
     } else {
-      res.redirect('/auth/login');
+      res.redirect('/');
     }
   })
 })
@@ -73,7 +73,7 @@ router.post('/signup', (req, res, next) => {
       res.flash('Registration successfully. Plase Login')
       res.redirect('/')
     })
-    .catch(error => {
+    .catch(error => {            
       res.render('auth/login', {
         title: 'Sign Up',        
         section: 'auth',
