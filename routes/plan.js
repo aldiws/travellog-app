@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
   TravelingPlan.findAll()
     .then((result) => {
       res.send(result)
+      
     })
     .catch(err => {
       res.send(err)
@@ -32,7 +33,12 @@ router.post('/add', (req, res) => {
       res.redirect('/destination')
     })
     .catch((err) => {
-      res.send(err)
+      Plan.findAll()
+    .then((result) => {
+      res.send(err.message)
+      
+    })
+      
     })
 })
 
@@ -49,7 +55,7 @@ router.post('/addDestination/:planId/:userId/:destinationId',(req,res)=>{
     PlanDestination.create(addDestination).then(()=>{
       res.redirect('/destination')
     }).catch((err)=>{
-      res.send(err)
+      res.render('destination')
     })
 })
 
@@ -101,6 +107,24 @@ router.get('/delete/:id', (req, res) => {
       res.send(err)
     })
 })
+
+// router.get('/joinDestination/:userId/:plan_destination/:departureDate/:endsDate', (req,res)=>{
+//   PlanDestination.findOrCreate({
+//     where:{
+//       Plan_DestinationsId: +req.params.plan_destination,
+//       JoinId: +req.params.userId,
+      
+
+//     },defaults:{
+//       departureDate: req.params.departureDate,
+//       endsDate: req.params.endsDate
+//     }
+//   }).spread((userResult,created)=>{
+//     res.redirect('/')
+//   }).catch((err)=>{
+//     console.log(err)
+//   })
+// })
 
 router.get('/:id/addDestination', (req, res) => {
   let id = req.params.id

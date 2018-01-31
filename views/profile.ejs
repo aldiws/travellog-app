@@ -44,6 +44,7 @@
         </div>
     </div>
     <!-- Header -->
+    <%- include templates/header.ejs%>
     <div class="header">
         <div class="brand">
             <a href="/" class="brand_font">TravelLog</a>
@@ -90,7 +91,7 @@
         <div class="profile_content_container">
             <div class="profile_info">
                 <div class="users_photo">
-                    <img src="img/brenda-profpic.jpg" alt="">
+                    <img src="<%=userData.photo_profile%>" alt="">
                 </div>
                 <div class="users_info">
                     <div class="users_info_name">

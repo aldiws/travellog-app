@@ -1,10 +1,34 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Plan = sequelize.define('Plan', {
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      validate:{
+        notEmpty:{
+          args: true,
+          msg: 'Make sure title not empty'
+        }
+      }
+    },
     planDescription: DataTypes.STRING,
-    departureDate: DataTypes.STRING,
-    endsDate: DataTypes.STRING,
+    departureDate: {
+      type:DataTypes.STRING,
+      validate:{
+        notEmpty:{
+          args:true,
+          msg:'Please input date'
+        }
+      }
+    },
+    endsDate: {
+      type:DataTypes.STRING,
+      validate:{
+        notEmpty:{
+          args:true,
+          msg:'Please input date'
+        }
+      }
+    },
     UserId: DataTypes.INTEGER
   }, {
     classMethods: {
@@ -30,6 +54,13 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'PlanId',
     })
   }
+
+  Plan.beforeCreate((user, options) => {
+    user.title = user.title.toLowerCase()
+    console.log(user)
+  });
+  
+
   
   return Plan;
 };

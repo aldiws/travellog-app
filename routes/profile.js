@@ -36,11 +36,6 @@ router.get('/:id', (req,res)=>{
             project.Plans[i].endsDate = endsDateSubString
         }
 
-        // for(let j = 0;j < project.Plans.length;j++){
-        //     console.log(project.Plans[j])
-
-        // }
-
         PlanDestination.findAll({
             attributes:[
                 'PlanId',
@@ -51,9 +46,7 @@ router.get('/:id', (req,res)=>{
             },
             include: [Destination, Plan]
         }).then((hasil)=>{
-            // console.log(project.Plans)
-            console.log(hasil)
-            // console.log(hasil[0].Destination)
+            
             res.render('profile', {userPlanData: project.Plans, userData: project, planDestination: hasil})
         })
       })

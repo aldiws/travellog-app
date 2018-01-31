@@ -57,7 +57,7 @@
                     <div class="head_nav_profile_expand">
                         <div class="hnpe_top">
                             <div class="hnpe_top_image"></a><img src="<%=userData.photo_profile%>" alt=""></div>
-                            <span class="hnpe_top_name"><%=userData.firstName%> <%=userData.lastName%></span>
+                            <span class="hnpe_top_name"><%=userData.getFullName()%></span>
                             <span class="hnpe_top_email"><%=userData.email%></span>
                             <a href="/profile/<%=userData.id%>" class="hnpe_top_seeAll">See Profile</a>
                         </div>
@@ -108,211 +108,33 @@
         <section class="profile_content">
             <div class="profile_content_inside">
 
-                <div class="profile_content_inside_card">
-                    <div class="card_content_image">
-                        <img src="img/destination/bali/activities/potato_head.jpg" alt="">
+                <%userOtherData.forEach(data =>{%>
+                    <div class="profile_content_inside_card">
+                        <div class="card_content_image">
+                            <img src="<%=data.Destination.photo%>" alt="">
+                        </div>
+                        <div class="card_content">
+                            <div class="card_content_title">
+                                <a href="" class="card_content_title_font"><%=data.Destination.province%>, <%=data.Destination.name%></a>
+                            </div>
+                            <div class="card_content_userName">
+                                <a href="/profile/:id" class="card_content_userName_font"></a>
+                            </div>
+                            <div class="card_content_gap">
+                                <hr class="card_content_hr">    
+                            </div>
+                            <div class="card_content_category">
+                                <a href="" class="card_content_category_font"><%=data.Destination.category%></a>
+                            </div>
+                            <div class="card_content_footer">
+                                <a href="/plan/joinDestination/<%=userData.id%>/<%=data.PlanId%>/<%=data.id%>/<%=data.departureDate%>/<%=data.endsDate%>" class="card_content_viewAll">Join</a>
+                                <span class="card_content_join_number"></span>
+                                <span class="card_content_date"><%=data.departureDate%></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card_content">
-                        <div class="card_content_title">
-                            <a href="" class="card_content_title_font">Bali, Potato Head</a>
-                        </div>
-                        <div class="card_content_userName">
-                            <a href="/profile/:id" class="card_content_userName_font">Aldi Wijaya</a>
-                        </div>
-                        <div class="card_content_gap">
-                            <hr class="card_content_hr">    
-                        </div>
-                        <div class="card_content_category">
-                            <a href="" class="card_content_category_font">Activities</a>
-                        </div>
-                        <div class="card_content_footer">
-                            <a href="" class="card_content_viewAll">View Plan</a>
-                            <a href="" class="card_content_join"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                            <span class="card_content_join_number">30</span>
-                            <span class="card_content_date">30/12/2018</span>
-                        </div>
-                    </div>
-                </div>
+            <%})%>
 
-                <div class="profile_content_inside_card">
-                    <div class="card_content_image">
-                        <img src="img/destination/jogja/historic/gumuling_well.jpeg" alt="">
-                    </div>
-                    <div class="card_content">
-                        <div class="card_content_title">
-                            <a href="" class="card_content_title_font">Jogja, Gumuling Well</a>
-                        </div>
-                        <div class="card_content_userName">
-                            <a href="" class="card_content_userName_font">David Joe</a>
-                        </div>
-                        <div class="card_content_gap">
-                            <hr class="card_content_hr">    
-                        </div>
-                        <div class="card_content_category">
-                            <a href="" class="card_content_category_font">Historic</a>
-                        </div>
-                        <div class="card_content_footer">
-                            <a href="" class="card_content_viewAll">View Plan</a>
-                            <a href="" class="card_content_join"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                            <span class="card_content_join_number">30</span>
-                            <span class="card_content_date">30/12/2018</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="profile_content_inside_card">
-                    <div class="card_content_image">
-                        <img src="img/destination/bali/nature&parks/kelingking_beach.jpg" alt="">
-                    </div>
-                    <div class="card_content">
-                        <div class="card_content_title">
-                            <a href="" class="card_content_title_font">Bali, Kelingkin Beach</a>
-                        </div>
-                        <div class="card_content_userName">
-                            <a href="" class="card_content_userName_font">Brenda Christie</a>
-                        </div>
-                        <div class="card_content_gap">
-                            <hr class="card_content_hr">    
-                        </div>
-                        <div class="card_content_category">
-                            <a href="" class="card_content_category_font">Nature and Parks</a>
-                        </div>
-                        <div class="card_content_footer">
-                            <a href="" class="card_content_viewAll">View Plan</a>
-                            <a href="" class="card_content_join"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                            <span class="card_content_join_number">30</span>
-                            <span class="card_content_date">30/12/2018</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="profile_content_inside_card">
-                    <div class="card_content_image">
-                        <img src="img/destination/bali/activities/uss_liberty.jpg" alt="">
-                    </div>
-                    <div class="card_content">
-                        <div class="card_content_title">
-                            <a href="" class="card_content_title_font">Bali, Scuba Dive USS Liberty</a>
-                        </div>
-                        <div class="card_content_userName">
-                            <a href="" class="card_content_userName_font">Windy Atmadja</a>
-                        </div>
-                        <div class="card_content_gap">
-                            <hr class="card_content_hr">    
-                        </div>
-                        <div class="card_content_category">
-                            <a href="" class="card_content_category_font">Activities</a>
-                        </div>
-                        <div class="card_content_footer">
-                            <a href="" class="card_content_viewAll">View Plan</a>
-                            <a href="" class="card_content_join"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                            <span class="card_content_join_number">30</span>
-                            <span class="card_content_date">30/12/2018</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="profile_content_inside_card">
-                   <div class="card_content_image">
-                        <img src="img/destination/jogja/nature&parks/jomblang_cave.jpg" alt="">
-                    </div>
-                    <div class="card_content">
-                        <div class="card_content_title">
-                            <a href="" class="card_content_title_font">Jogja, Jomblang Cave</a>
-                        </div>
-                        <div class="card_content_userName">
-                            <a href="" class="card_content_userName_font">Kevin Soeseno</a>
-                        </div>
-                        <div class="card_content_gap">
-                            <hr class="card_content_hr">    
-                        </div>
-                        <div class="card_content_category">
-                            <a href="" class="card_content_category_font">Nature and Parks</a>
-                        </div>
-                        <div class="card_content_footer">
-                            <a href="" class="card_content_viewAll">View Plan</a>
-                            <a href="" class="card_content_join"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                            <span class="card_content_join_number">30</span>
-                            <span class="card_content_date">30/12/2018</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="profile_content_inside_card">
-                    <div class="card_content_image">
-                        <img src="img/destination/bali/nature&parks/nusa_penida.jpg" alt="">
-                    </div>
-                    <div class="card_content">
-                        <div class="card_content_title">
-                            <a href="" class="card_content_title_font">Bali, Nusa Penida</a>
-                        </div>
-                        <div class="card_content_userName">
-                            <a href="" class="card_content_userName_font">Raymond Stephen</a>
-                        </div>
-                        <div class="card_content_gap">
-                            <hr class="card_content_hr">    
-                        </div>
-                        <div class="card_content_category">
-                            <a href="" class="card_content_category_font">Nature and Parks</a>
-                        </div>
-                        <div class="card_content_footer">
-                            <a href="" class="card_content_viewAll">View Plan</a>
-                            <a href="" class="card_content_join"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                            <span class="card_content_join_number">30</span>
-                            <span class="card_content_date">30/12/2018</span>
-                        </div>
-                    </div>   
-                </div>
-
-                <div class="profile_content_inside_card">
-                    <div class="card_content_image">
-                        <img src="img/destination/jogja/nature&parks/wediombo_beach.jpg" alt="">
-                    </div>
-                    <div class="card_content">
-                        <div class="card_content_title">
-                            <a href="" class="card_content_title_font">Jogja, Wediombo Beach</a>
-                        </div>
-                        <div class="card_content_userName">
-                            <a href="" class="card_content_userName_font">Brenda Christie</a>
-                        </div>
-                        <div class="card_content_gap">
-                            <hr class="card_content_hr">    
-                        </div>
-                        <div class="card_content_category">
-                            <a href="" class="card_content_category_font">Nature and Parks</a>
-                        </div>
-                        <div class="card_content_footer">
-                            <a href="" class="card_content_viewAll">View Plan</a>
-                            <a href="" class="card_content_join"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                            <span class="card_content_join_number">30</span>
-                            <span class="card_content_date">30/12/2018</span>
-                        </div>
-                    </div>   
-                </div>
-                <div class="profile_content_inside_card">
-                    <div class="card_content_image">
-                        <img src="img/destination/bali/historic/tanah_lot.png" alt="">
-                    </div>
-                    <div class="card_content">
-                        <div class="card_content_title">
-                            <a href="" class="card_content_title_font">Bali, Tanah Lot</a>
-                        </div>
-                        <div class="card_content_userName">
-                            <a href="" class="card_content_userName_font">Ryan Cru</a>
-                        </div>
-                        <div class="card_content_gap">
-                            <hr class="card_content_hr">    
-                        </div>
-                        <div class="card_content_category">
-                            <a href="" class="card_content_category_font">Historic</a>
-                        </div>
-                        <div class="card_content_footer">
-                            <a href="" class="card_content_viewAll">View Plan</a>
-                            <a href="" class="card_content_join"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                            <span class="card_content_join_number">30</span>
-                            <span class="card_content_date">30/12/2018</span>
-                        </div>
-                    </div>   
-                </div>
             </div>
         </section>
     </div>

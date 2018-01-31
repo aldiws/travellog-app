@@ -4,6 +4,7 @@ const port = process.env.PORT || 3000;
 const path = require('path');
 const bodyParser = require('body-parser');
 
+
 const index = require('./routes/index');
 const destination = require('./routes/destination')
 const plan = require('./routes/plan')
