@@ -50,7 +50,7 @@ router.post('/:username', (req, res, next) => {
             individualHooks: true,
           })
           .then(function () {
-            res.redirect('/setting')
+            res.redirect('/settings')
           })
           .catch(error => {
             res.render('users/setting_edit', {

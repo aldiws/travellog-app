@@ -8,7 +8,6 @@
     <%- include('../partials/nav_destination'); %>
     
     <%- include('../partials/search'); %>
-
     
         <!-- Gallery -->
         <section class="destination_content">
@@ -20,15 +19,19 @@
                       });
                     </script>
                   <% } %>
-                  
+            
+            <% if(user.username == 'admin'){ %>
             <a href="/destination/add">ADD</a>
-            <div class="destination_content_inside">
+            <%}%>
+
+            <div class="destination_content_inside" id="myTable">
                 <% result.forEach(destination=> { %>
-                    <div class="destination_content_inside_card">
+                    <div class="destination_content_inside_card" >
 
                         <div class="destination_card_content_image">
-                            <img src="/uploads/img/<%= destination.photo %>" onerror="this.onerror=null;this.src='/img/no-image-available.png';">
+                            <img src="/uploads/img/<%= destination.photo %>" onerror="this.onerror=null;this.src='/img/no-image-available.png';" id="<%= destination.name %>">
                         </div>
+
                         <div class="destination_card_content">
                             <div class="destination_card_content_title">
                                 <a href="" class="destination_card_content_title_font">
@@ -46,11 +49,12 @@
                                     <%= destination.category %>
                                 </a>
                             </div>
-                            <div class="destination_card_content_footer">
-                                
-                                if(user)
+
+                            <div class="destination_card_content_footer">                                
+                                <% if(user.username == 'admin'){ %>
                                 <a href="/destination/edit/<%=destination.id %>" class="destination_card_content_explored">Edit</a>
                                 <a href="/destination/delete/<%=destination.id %>" class="destination_card_content_explored">Delete</a>
+                                <%}%>
 
                                     <div class="destination_card">
                                         <a href="" class="destination_card_add">Add to plan</a>
@@ -74,7 +78,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
+
                         </div>
                     </div>
                     <% }) %>

@@ -26,10 +26,11 @@
             </div>
         </div>
     </div>
+
     <!-- Header -->
     <div class="header">
         <div class="brand">
-            <a href="home.html" class="brand_font">TravelLog</a>
+            <a href="/dashboard" class="brand_font">TravelLog</a>
         </div>
         <div class="hacktiv8Logo">
             <img class="hacktiv8Logo_img" src="img/hacktiv8_logo.png">
@@ -40,7 +41,7 @@
             </a>
     
             <div class="head_navigation_nest">
-                <a class="head_navigation_button head_nav_profile" href="/dashboard/profile/User:id">
+                <a class="head_navigation_button head_nav_profile" href="/profile">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <div class="head_nav_profile_expand">
                         <div class="hnpe_top">
@@ -57,10 +58,12 @@
                         <i class="fa fa-pencil hnpe_icon" aria-hidden="true"></i>
                         <h3 class="hnpe_mid_text_font">Edit Profile</h3>
                     </a>
+                    <% if(user.username !== 'admin'){ %>
                     <a class="hnpe_mid_text" id="pop_up_button_profile">
                         <i class="fa fa-plus hnpe_icon" aria-hidden="true"></i>
                         <h3 class="hnpe_mid_text_font">Create Plan</h3>
                     </a>
+                    <%}%>
                     <a href="" class="hnpe_mid_text">
                         <i class="fa fa-sign-out hnpe_icon" aria-hidden="true"></i>
                         <h3 class="hnpe_mid_text_font">Sign Out</h3>
@@ -70,13 +73,18 @@
                 </div>
                 </a>
             </div>
+            <% if(user.username !== 'admin'){ %>
             <a class="head_navigation_button" id="head_nav_add">
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </a>            
-            <a class="head_navigation_button" href="/dashbord"><i class="fa fa-users" aria-hidden="true"></i></a>
+            <%}%>
+            <a class="head_navigation_button" href="/dashboard"><i class="fa fa-users" aria-hidden="true"></i></a>
+
+            <% if(user.username !== 'admin'){ %>
             <a onclick="topFunction()" id="head_nav_search" class="head_navigation_button">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </a>
+            <%}%>
         </div>
     </div>
     

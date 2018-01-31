@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const Models = require('../models')
-const User = Models.User
+const models = require('../models')
+const User = models.User
 
 router.get('/', (req, res) => {
   User.findById(req.session.userId)
@@ -27,6 +27,5 @@ router.get('/destination', (req, res) => {
       res.send(err)
     })
 })
-
 
 module.exports = router

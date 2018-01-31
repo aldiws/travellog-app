@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const Models = require('../models')
-const User = Models.User
+const models = require('../models')
+const User = models.User
 const Op = require('sequelize').Op
 
 router.get('/', (req, res, next) => {
@@ -31,7 +31,7 @@ router.post('/', (req, res, next) => {
             req.session.user = user
             req.session.isLogin = true
             res.flash('Login success')
-            res.redirect('/dashbord')
+            res.redirect('/dashboard')
           } else {
             res.flash('Wrong Password')
             res.redirect('/')

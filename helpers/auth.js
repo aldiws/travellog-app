@@ -1,14 +1,13 @@
-function checkLoginHandler(req, res, next) {
+function check_login(req, res, next) {
   console.log('------->', req.url)
   let login = req.session.isLogin
   if (login) {
     next(res.path)
   } else {
-    res.redirect('/auth/login')
-  }  
+    res.redirect('/')
+  }
 }
 
 module.exports = {
-  checkLoginHandler: checkLoginHandler
+  check_login: check_login
 }
-

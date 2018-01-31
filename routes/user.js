@@ -14,7 +14,6 @@ const Storage = multer.diskStorage({
 const models = require('../models')
 const User = models.User
 
-
 router.get('/', (req, res) => {
   let id = req.session.userId
   User.findById(id)
@@ -79,32 +78,31 @@ router.post('/:username', (req, res) => {
               }
             })
             .then(function () {
+              res.flash('Upload success')
               res.redirect('/profile')
             })
             .catch(function (err) {
+              res.flash('Upload failed')
               res.redirect('/profile')
             })
         } else {
           res.redirect('/profile')
-          console.log('Error uploading file max size 1MB')
-          // return res.end("Error uploading file.");
+          res.flash('Error uploading file max size 1MB')
         }
         if (req.fileValidationError) {
-          console.log('req.fileValidationError')
           let id = req.session.userId
+          res.flash('Upload failed forbidden extension')
           User.findById(id)
             .then((user) => {
               res.render('users/user_edit', {
                 user: user,
                 title: 'Update Profile ',
                 section: 'users',
-                error: req.fileValidationError,
               })
             })
         }
       })
     })
 })
-
 
 module.exports = router

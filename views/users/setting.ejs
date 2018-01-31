@@ -11,11 +11,11 @@
 <body>
 
   <form action="" method="post">
-    <input type="text" value="<%= user.username %>" name="username">
-    <input type="text" value="<%= user.email %>" name="email">    
+    <input type="text" value="<%= user.username %>" name="username" readonly>
+    <input type="text" value="<%= user.email %>" name="email" readonly>    
     <input type="text" name="newpassword">        
   </form>
-<a href="/setting/<%= user.username%>"> Update Accout</a>
+<a href="/settings/<%= user.username%>"> Update Accout</a>
 <a class="danger" onclick="myFunction()" href="/setting/<%= user.username %>/delete" >Delete Acount</a>
 
 <script>

@@ -1,19 +1,20 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const path = require('path');
-const bodyParser = require('body-parser');
-const session = require('express-session')
-const cookieParser = require('cookie-parser');
-const multer = require('multer')
 
-const checkLoginHandler = require('./helpers/auth').checkLoginHandler;
-const flashMessageHandler = require('./helpers/message').flashMessageHandler;
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+
+const path = require('path');
+const multer = require('multer');
+
+const check_login = require('./helpers/auth').check_login;
+const flash_message = require('./helpers/message').flash_message;
 
 // view engine
 app.set('views', './views');
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,24 +29,23 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(session({
 	key: 'userId',
-	secret: 'catch-me-if-you-can',	
+	secret: 'catch-me-if-you-can',
 	cookie: {
 		maxAge: 360000
 	}
 }));
-app.use(flashMessageHandler);
+app.use(flash_message);
+
 
 // set routes
 app.use('/', require('./routes/auth'));
-app.use('/dashbord',checkLoginHandler, require('./routes/dashbord'));
-app.use('/profile', require('./routes/user'));
-app.use('/settings', require('./routes/setting'));
-
-app.use('/destination', require('./routes/destination'));
+app.use('/dashboard', check_login, require('./routes/dashbord'));
+app.use('/destination', check_login, require('./routes/destination'));
+app.use('/profile', check_login, require('./routes/user'));
+app.use('/settings', check_login, require('./routes/setting'));
 
 
 app.use((req, res, next) => {
-	// res.status(404).send("Sorry can't find that!")
 	res.render('error')
 });
 

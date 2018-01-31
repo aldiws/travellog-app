@@ -1,4 +1,4 @@
-function flashMessageHandler(req, res, next) {
+function flash_message(req, res, next) {
   res.flash = function (text) {
     res.cookie('flash_message', text, {
       httpOnly: true
@@ -11,7 +11,6 @@ function flashMessageHandler(req, res, next) {
   next()
 }
 
-
 module.exports = {
-  flashMessageHandler: flashMessageHandler
+  flash_message: flash_message
 }

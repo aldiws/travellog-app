@@ -70,7 +70,8 @@ module.exports = (sequelize, DataTypes) => {
         },
       }
     }
-  }, {
+  }, 
+  {
     hooks: {
       beforeCreate: (user, options) => {
         return bcrypt.hash(user.password, 10)
@@ -84,18 +85,10 @@ module.exports = (sequelize, DataTypes) => {
             user.password = hash
           })
       }
-    },
-    instanceMethods: {
-      comparePassword: function (userPassword, callback) {
-        bcrypt.compare(userPassword, this.password)
-          .then((isMatch) => {
-            callback(isMatch)
-          })
-      }
     }
   });
 
-  User.hook('beforeCreate', (user, options) => {
+  User.beforeCreate(user => {
     user.username = user.username.toLowerCase();
   });
 
@@ -112,14 +105,6 @@ module.exports = (sequelize, DataTypes) => {
   User.prototype.full_name = function () {
     return (`${this.first_name} ${this.last_name}`)
   };
-
-  User.associate = function (models) {
-    //one to many
-    User.hasMany(models.TravelingPlan, {
-      foreignKey: 'UserId'
-    });    
-    
-  }
 
   return User;
 };

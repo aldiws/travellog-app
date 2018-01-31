@@ -68,7 +68,7 @@ router.post('/add', (req, res) => {
       }
       Destination.create(objDestination)
         .then(function () {
-          res.flash('Success')
+          res.flash('Upload success')
           res.redirect('/destination')
         })
         .catch(function (err) {
@@ -80,8 +80,7 @@ router.post('/add', (req, res) => {
       res.redirect('/destination')
     }
     if (req.fileValidationError) {
-      res.flash('Error uploading file')
-      console.log('req.fileValidationError')
+      res.flash('Upload failed forbidden extension')
       res.render('destination/add_destination', {
         title: 'Add Destination',
         title: 'Add Destination',
@@ -137,7 +136,7 @@ router.post('/edit/:id', (req, res) => {
           }
         })
         .then(function () {
-          res.flash('Success')
+          res.flash('Upload success')
           res.redirect('/destination')
         })
         .catch(function (err) {
@@ -148,16 +147,15 @@ router.post('/edit/:id', (req, res) => {
       res.flash('Error uploading file max size 10MB')
       res.redirect('/destination')
     }
-    if (req.fileValidationError) {
-      console.log('req.fileValidationError')
+    if (req.fileValidationError) {      
       let id = req.params.id
+      res.flash('Upload failed forbidden extension')
       Destination.findById(id)
         .then((result) => {
           res.render('', {
             result: result,
             title: 'Edit Destination',
-            section: 'destination',
-            error: null,
+            section: 'destination',            
           })
         })
     }
