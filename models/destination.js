@@ -10,20 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     photo: DataTypes.STRING
   });
 
-  // Destination.associate = function (models) {
+  Destination.associate = function (models) {
+    Destination.hasMany(models.Plan_Destination, {
+      foreignKey: 'DestinationId'
+    })
 
-  //   //one to many
-  //   Destination.hasMany(models.PlanDestination, {
-  //     foreignKey: 'DestinationId'
-  //   });
-
-  //   // many to many
-  //   Destination.belongsToMany(models.TravelingPlan, {
-  //     through: 'PlanDestination',
-  //     foreignKey: 'DestinationId'
-  //   })
-
-  // }
+    Destination.belongsToMany(models.Plan, {
+      through: 'Plan_Destination',
+      foreignKey: 'DestinationId'
+    })
+  }
 
   return Destination;
 };

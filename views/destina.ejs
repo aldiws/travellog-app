@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Destination Page</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/05e7c788bc.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>        
+        .destination_plan_list{
+            display: inline-block;
+            float: left;
+            width: 100%;
+        }
+
+        .destination_plan_list_date{
+            transform: translateY(-10px)
+        }
+    </style>
+
+</head>
+<body>
+    <%- include('templates/modal'); %>
+    <!-- Header -->
+    <%- include('templates/header.ejs', {userData:userData}); %>
+
+    <!-- Destination Body Content -->
+    <div class="wrapper_bodycontent">
+        <!-- Search Section -->
+        <section class="search_section">
+            <div class="search_section_banner">
+                <div class="search_section_banner_inside">
+                    <div class="search_section_banner_image">
+                         <img src="img/HomeBanner.jpg">
+                    </div>
+                    <div class="search_section_banner_message">
+                        <h2 class="search_section_banner_message_font">Explore & Discover Valuable Destination</h2>
+                    </div>
+                </div>  
+            </div>
+            <form class="search_section_box" action="/dashboard/search" method="post">
+                <input class="search_section_box_inside" type="text" name="key_search" placeholder="Search Destination by..." autocomplete="off"/>
+            </form>
+        </section>
+
+        <!-- Gallery -->
+        <section class="destination_content">
+            <div class="destination_content_inside">
+                <%showData.forEach(data =>{%>
+                    <div class="destination_content_inside_card">
+                        <div class="destination_card_content_image">
+                            <img src="<%=data.photo%>" alt="">
+                        </div>
+                        <div class="destination_card_content">
+                            <div class="destination_card_content_title">
+                                <a href="" class="destination_card_content_title_font"><%=data.name%></a>
+                            </div>
+                            <div class="destination_card_content_location">
+                                <a href="search/destination/<%=data.specificLocation%>" class="destination_card_content_location_font"><%=data.specificLocation%>,</a> 
+                                <a href="search/destination/<%=data.province%>" class="destination_card_content_location_font"><%=data.province%></a>
+                            </div>
+                            <div class="destination_card_content_category">
+                                <a href="" class="destination_card_content_category_font"><%=data.category%></a>
+                            </div>
+                            <div class="destination_card_content_footer">
+                                <div class="destination_card">
+                                    <a href="" class="destination_card_add">Add to plan</a>
+                                    <div class="pop_up_addto">
+                                        <div class="pop_up_addto_title">
+                                            <h4 class="pop_up_addto_title_font">Add to Plan</h4>
+                                        </div>
+                                        <div class="pop_up_plan_list">
+                                            <%showUserPlan.forEach(userPlan=>{%>
+                                                <form id="addDestinationForm" action="/plan/addDestination/<%=userPlan.id%>/<%=userPlan.UserId%>/<%=data.id%>" method="post" class="destination_plan_list">
+                                                    <div class="pop_up_plan">
+                                                        <h4 class="pop_up_plan_list_font"><%=userPlan.title%></h4>
+        <button type="submit" id="addDestionationButton" class="pop_up_plan_icon"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                        <input id="addDestinationForm_departureDate" type="date" name="departureDate" class="destination_plan_list_date">
+                                                        <input id="addDestinationForm_endsDate" type="date" name="endsDate" class="destination_plan_list_date">
+                                                    </div>  
+                                                </form>
+                                            <%})%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <%})%>
+            </div>
+        </section>
+    </div>
+    <script>
+
+        $(document).ready(function(){
+            $("#head_nav_search").click(function(){
+                $(".search_section_banner").css("opacity","0")
+                $(".search_section_box").css('opacity','1')
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            });
+
+            $('#head_nav_add').click(function(){
+                $('body').css('overflow','hidden')
+                $('.modal_addPlan').css('transform','translate(0,0)')
+            })
+
+            $('.modal_plan_bottom_cancle').click(function(){
+                $('body').css('overflow','scroll')
+                $('.modal_addPlan').css('transform','translate(0,-120%)')
+            })
+
+            $('#pop_up_button_profile').click(function(){
+                $('body').css('overflow','hidden')
+                $('.modal_addPlan').css('transform','translate(0,0)')
+            })
+
+            $("#plan_submit").click(function(event){
+                var form_data=$("#plan").serializeArray();
+                var error_free=true;
+                for (var input in form_data){
+                    var element=$("#plan_"+form_data[input]['name']);
+                    console.log(element)
+                    var valid=element.val() != '';
+                    if(valid === false){
+                        error_free = false
+                    }
+                }
+
+                if (!error_free) {
+                    alert('Lenkapin!');
+                    // javascript:history.go(0)
+                }else{
+                    $('form#plan').submit()
+                }
+            });
+
+    
+            
+        });
+
+
+        var target = $('.search_section_banner_message_font');
+        var targetHeight = target.outerHeight();
+
+        $(document).scroll(function(){
+            var scrollPercent = (targetHeight - window.scrollY) / targetHeight;
+            if(scrollPercent >= 0){
+                target.css('opacity', scrollPercent);
+            }
+
+            if(targetHeight < window.scrollY){
+                target.css('opacity','0')
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>

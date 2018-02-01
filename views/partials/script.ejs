@@ -23,6 +23,28 @@
             $('.modal_addPlan').css('transform', 'translate(0,0)')
         })
 
+        $("#plan_submit").click(function (event) {
+            var form_data = $("#plan").serializeArray();
+            var error_free = true;
+            for (var input in form_data) {
+                var element = $("#plan_" + form_data[input]['name']);
+                console.log(element)
+                var valid = element.val() != '';
+                if (valid === false) {
+                    error_free = false
+                }
+            }
+
+            if (!error_free) {
+                alert('Lenkapin!');
+                // javascript:history.go(0)
+            } else {
+                $('form#plan').submit()
+            }
+        });
+
+
+
     });
 
 

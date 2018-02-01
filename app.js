@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const multer = require('multer');
 
+
 const check_login = require('./helpers/auth').check_login;
 const flash_message = require('./helpers/message').flash_message;
 
@@ -22,6 +23,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/profile/', express.static(path.join(__dirname + '/public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 
 // body parser middleware
 app.use(bodyParser.json());
@@ -42,14 +44,22 @@ app.use(flash_message);
 
 // set routes
 app.use('/', require('./routes/auth'));
-app.use('/dashboard', check_login, require('./routes/dashbord'));
 app.use('/destination', check_login, require('./routes/destination'));
-app.use('/profile', check_login, require('./routes/user'));
 app.use('/settings', check_login, require('./routes/setting'));
+
+
+app.use('/profile', check_login, require('./routes/user'));
+
+
+app.use('/dashboard', check_login, require('./routes/dashbord'));
+app.use('/plan', require('./routes/plan'))
+
+
 
 
 app.use((req, res, next) => {
 	res.render('error')
 });
+
 
 app.listen(port, () => console.log(`Express server listening on http://localhost:${port}`));
