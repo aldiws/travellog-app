@@ -44,7 +44,6 @@
         </div>
     </div>
     <!-- Header -->
-    <%- include templates/header.ejs%>
     <div class="header">
         <div class="brand">
             <a href="/" class="brand_font">TravelLog</a>
@@ -120,39 +119,11 @@
             </div>
             <div class="profile_nav_inner">
                 <a id="plan_open" class="provile_nav_inner_font">Plan</a>
-                <a id="accomplished_open" class="provile_nav_inner_font">Accomplished</a>
                 <a id="edit_profile_open" class="provile_nav_inner_font">Edit Profile</a>
             </div>
         
             <div class="profile_user_content">
-            <!-- Accomplished -->
-                <div id="accomplished_profile" class="profile_user_inside">
-                    <div class="profile_user_content_inside_card">
-                        <div class="card_user_content_image">
-                            <img src="img/destination/bali/activities/potato_head.jpg" alt="">
-                        </div>
-                        <div class="card_user_content">
-                            <div class="card_user_content_title">
-                                <a href="" class="card_user_content_title_font">Bali, Potato Head</a>
-                            </div>
-                            <div class="card_user_content_userName">
-                                <a href="/profile/:id" class="card_user_content_userName_font">Aldi Wijaya</a>
-                            </div>
-                            <div class="card_user_content_gap">
-                                <hr class="card_user_content_hr">    
-                            </div>
-                            <div class="card_user_content_category">
-                                <a href="" class="card_user_content_category_font">Activities</a>
-                            </div>
-                            <div class="card_content_footer">
-                                <a href="" class="card_content_viewAll">View Plan</a>
-                                <a href="" class="card_content_join"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                                <span class="card_content_join_number">30</span>
-                                <span class="card_content_date">30/12/2018</span>
-                            </div>
-                        </div>
-                    </div>  
-                </div>
+             
             <!-- Plan -->
                 <div id="plan_profile" class="profile_plan_inside">
                     <%userPlanData.forEach(data =>{%>

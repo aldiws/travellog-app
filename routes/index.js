@@ -32,8 +32,9 @@ router.get('/',(req,res)=>{
           for(let i =0; i < hasilDariPlan.length; i++){
             kumpulanDariPlan.push(hasilDariPlan[i].id)
           }
-
           PlanDestination.findAll({
+            attributes: {
+               include: ['id'] },
             where:{
               PlanId : {
                 [Op.notIn]: kumpulanDariPlan
@@ -42,22 +43,32 @@ router.get('/',(req,res)=>{
                 [Op.notIn]: kumpulanDariJoinersPlan
               }
             },
-            include:[Destination, Plan]
+            include:[Destination, Plan, User, Joiners_Plan]
           }).then((hasilAkhir)=>{
-            res.render('home', {userData:data, userOtherData:hasilAkhir})
-            
-            // hasilAkhir.forEach(travelplan => {
-            //   User.findAll({
-            //     where:{
-            //       id:travelplan.Plan.UserId
-            //     },
-            //     order:[
-            //       ['userName', 'ASC']
-            //     ]
-            //   }).then((hasil_namaUser)=>{
-            //     console.log(hasil_namaUser)
-            //   })
-            // });
+            let newHasil = hasilAkhir.map(hasil => {
+              return new Promise((resolve,reject)=> {
+                User.findOne({
+                      where:{
+                        id:hasil.Plan.UserId
+                      }
+                  }).then((hasil_namaUser)=>{
+                    hasil.User = hasil_namaUser
+                    Joiners_Plan.findAndCountAll({
+                      where:{
+                        JoinId: hasil.id
+                      }
+                    }).then((hasilCountJoin)=>{
+                      hasil.Count = hasilCountJoin.count+1
+                      resolve(hasil)
+                    })
+                }).catch((err)=>{
+                  reject(err)
+                })
+              })
+            })
+              Promise.all(newHasil).then(function(values){
+              res.render('home', {userData:data, userOtherData:values, err:null})
+            })
           })
           
         })

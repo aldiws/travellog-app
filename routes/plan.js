@@ -6,6 +6,7 @@ const Plan = Models.Plan
 const Destination = Models.Destination
 const User = Models.User
 const PlanDestination = Models.Plan_Destination
+const Joiners_Plan = Models.Joiners_Plan
 
 router.get('/', (req, res) => {
   TravelingPlan.findAll()
@@ -25,7 +26,7 @@ router.post('/add', (req, res) => {
     planDescription: req.body.planDescription,
     departureDate: req.body.departureDate,
     endsDate: req.body.endsDate,
-    UserId: 1
+    UserId: 2
   }
   
   Plan.create(objTravelingStyle)
@@ -34,11 +35,9 @@ router.post('/add', (req, res) => {
     })
     .catch((err) => {
       Plan.findAll()
-    .then((result) => {
-      res.send(err.message)
-      
-    })
-      
+      .then((result) => {
+        res.send(err.message)
+      })
     })
 })
 
@@ -108,23 +107,22 @@ router.get('/delete/:id', (req, res) => {
     })
 })
 
-// router.get('/joinDestination/:userId/:plan_destination/:departureDate/:endsDate', (req,res)=>{
-//   PlanDestination.findOrCreate({
-//     where:{
-//       Plan_DestinationsId: +req.params.plan_destination,
-//       JoinId: +req.params.userId,
-      
-
-//     },defaults:{
-//       departureDate: req.params.departureDate,
-//       endsDate: req.params.endsDate
-//     }
-//   }).spread((userResult,created)=>{
-//     res.redirect('/')
-//   }).catch((err)=>{
-//     console.log(err)
-//   })
-// })
+router.get('/joinDestination/:userId/:planId/:plan_destinationId/:departureDate/:endsDate', (req,res)=>{
+  console.log(req.params)
+  Joiners_Plan.findOrCreate({
+    where:{
+      Plan_DestinationsId: +req.params.plan_destinationId,
+      JoinId: +req.params.userId,
+    
+    },defaults:{
+      departureDate: req.params.departureDate,
+      endsDate: req.params.endsDate
+    }
+  }).spread((userResult,created)=>{
+    res.redirect('/')
+    }).catch((err)=>{
+  })
+})
 
 router.get('/:id/addDestination', (req, res) => {
   let id = req.params.id

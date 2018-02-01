@@ -1008,6 +1008,7 @@ time, mark, audio, video {
     font-weight: 500;
     padding: 0 1em;
     margin-right: 15px;
+    line-height: 38px;
 }
 
 .modal_plan_bottom_cancle{

@@ -9,13 +9,13 @@ const PlanDestinations = Models.PlanDestinations
 
 router.get('/', (req,res)=>{
     Destination.findAll().then((result)=>{
-        User.findById(1).then((resultUser)=>{
-            User.findById(1,{
+        User.findById(2).then((resultUser)=>{
+            User.findById(2,{
                 include:[{
                     model: Plan
                 }]
             }).then((hasil)=>{
-                res.render('destination', {showData:result, userData:resultUser, showUserPlan: hasil.Plans})
+                res.render('destination', {showData:result, userData:resultUser, showUserPlan: hasil.Plans, err:null})
             })
             
         })

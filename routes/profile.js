@@ -8,15 +8,6 @@ const Destination = Models.Destination
 const User = Models.User
 const PlanDestination = Models.Plan_Destination
 
-// User.findAll({
-//     include: [{
-//       model: Project,
-//       through: {
-//         attributes: ['createdAt', 'startedAt', 'finishedAt'],
-//         where: {completed: true}
-//       }
-//     }]
-//   });
 
 router.get('/:id', (req,res)=>{
     let userId = +req.params.id
@@ -47,25 +38,9 @@ router.get('/:id', (req,res)=>{
             include: [Destination, Plan]
         }).then((hasil)=>{
             
-            res.render('profile', {userPlanData: project.Plans, userData: project, planDestination: hasil})
+            res.render('profile', {userPlanData: project.Plans, userData: project, planDestination: hasil, err:null})
         })
       })
 })
-
-
-// Project
-//   .findAndCountAll({
-//      where: {
-//         title: {
-//           [Op.like]: 'foo%'
-//         }
-//      },
-//      offset: 10,
-//      limit: 2
-//   })
-//   .then(result => {
-//     console.log(result.count);
-//     console.log(result.rows);
-//   });
 
 module.exports = router

@@ -4,7 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     JoinId: DataTypes.INTEGER,
     Plan_DestinationsId: DataTypes.INTEGER,
     departureDate: DataTypes.STRING,
-    endsDate: DataTypes.STRING
+    endsDate: DataTypes.STRING,
+    status:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
+
   }, {
     classMethods: {
       associate: function(models) {

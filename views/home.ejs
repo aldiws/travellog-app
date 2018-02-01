@@ -12,6 +12,29 @@
 
 </head>
 <body>
+    <script>
+        $(document).ready(function() {
+            $("#plan_submit").click(function(event){
+                var form_data=$("#plan").serializeArray();
+                var error_free=true;
+                for (var input in form_data){
+                    var element=$("#plan_"+form_data[input]['name']);
+                    var valid=element.val() != '';
+                    if(valid === false){
+                        error_free = false
+                    }
+                }
+
+                if (!error_free) {
+                    alert('Lenkapin!');
+                    // javascript:history.go(0)
+                }else{
+                    $('form#plan').submit()
+                }
+            });
+        });
+
+    </script>
 
     <div class="modal_addPlan">
         <div class="modal_container">
@@ -19,23 +42,23 @@
                 <div class="modal_container_box_top">
                     <h4 class="modal_container_box_top_font">Add Plan</h4>
                 </div>
-                <form class="modal_plan_form" action="/plan/add" method="post">
-                    <input type="text" name="title" class="modal_createPlan_input_title" placeholder="Whats theme on your mind?">
-                    <textarea type="text" name="planDescription" class="modal_createPlan_input_description" placeholder="Tell your plan description"></textarea>
+                <form id="plan" class="modal_plan_form" action="/plan/add" method="post">
+                    <input type="text" id="plan_title" name="title" class="modal_createPlan_input_title" placeholder="Whats theme on your mind?">		
+                    <textarea type="text" id="plan_planDescription" name="planDescription" class="modal_createPlan_input_description" placeholder="Tell your plan description"></textarea>
                     <div class="form_three_line">
                         <div class="departure_date_modal">
                             <span class="date_modal_font">Departure Date</span>
-                            <input type="date" name="departureDate" class="modal_form_three_line_box" placeholder="Departure Date">
+                            <input id="plan_departureDate" type="date" name="departureDate" class="modal_form_three_line_box" placeholder="Departure Date">
                         </div>
                         <div class="departure_date_modal">
                             <span class="date_modal_font">Ends Date</span>
-                            <input type="date" name="endsDate" class="modal_form_three_line_box" placeholder="Ends Date">
+                            <input id="plan_endsDate" type="date" name="endsDate" class="modal_form_three_line_box" placeholder="Ends Date">
                         </div>
                         
                     </div>
                     <div class="modal_plan_bottom">
-                        <button class="modal_plan_bottom_execute">Create</button>
-                        <button type="button" id="close_modal" class="modal_plan_bottom_cancle">Cancel</button>
+                        <div id="plan_submit" class="modal_plan_bottom_execute">Create</div>
+                        <div id="close_modal" class="modal_plan_bottom_cancle">Cancel</div>
                     </div>
                 </form>
             </div>
@@ -118,7 +141,7 @@
                                 <a href="" class="card_content_title_font"><%=data.Destination.province%>, <%=data.Destination.name%></a>
                             </div>
                             <div class="card_content_userName">
-                                <a href="/profile/:id" class="card_content_userName_font"></a>
+                                <a href="/profile/:id" class="card_content_userName_font"><%=data.User.getFullName()%></a>
                             </div>
                             <div class="card_content_gap">
                                 <hr class="card_content_hr">    
@@ -128,7 +151,7 @@
                             </div>
                             <div class="card_content_footer">
                                 <a href="/plan/joinDestination/<%=userData.id%>/<%=data.PlanId%>/<%=data.id%>/<%=data.departureDate%>/<%=data.endsDate%>" class="card_content_viewAll">Join</a>
-                                <span class="card_content_join_number"></span>
+                                <span class="card_content_join_number"><%=data.Count%></span>
                                 <span class="card_content_date"><%=data.departureDate%></span>
                             </div>
                         </div>
