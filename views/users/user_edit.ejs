@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <form action="/profile/<%= user.username %>" method="post" enctype="multipart/form-data">
+    <img src="/uploads/img/<%= user.photo_profile %>" alt="your image" height="200" width="300" />
+    <input type='file' name="photo_profile" accept=".jpg, .jpeg, .png" multiple />
+    <input type="text" value="<%= user.first_name %>" name="first_name">
+    <input type="text" value="<%= user.last_name %>" name="last_name">
+    <input type="text" value="<%= user.gender %>" name="gender">
+    <input type="text" value="<%= user.about_me %>" name="about_me">
+    <input type="text" value="<%= user.travel_style %>" name="travel_style">
+    <input type="submit" value="submit">
+  </form>
+
+
+</body>
+
+</html>

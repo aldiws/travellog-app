@@ -1,0 +1,31 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://use.fontawesome.com/05e7c788bc.js"></script>
+<title>
+  <%= title %>
+</title>
+<style>
+  .destination_plan_list {
+    display: inline-block;
+    float: left;
+    width: 100%;
+  }
+
+  .destination_plan_list_date {
+    transform: translateY(-10px)
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+    $("#myInput").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#myTable>div").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+
+    });
+  });
+</script>

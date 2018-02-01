@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/metaHead'); %>
+</head>
+
+<body>
+    <%- include('../partials/nav_destination'); %>
+    
+    <%- include('../partials/search'); %>
+    
+        <!-- Gallery -->
+        <section class="destination_content">
+                <% if (typeof flashMessage !== 'undefined') { %>
+                    <div id="flash" class="ui error message"><%= flashMessage %></div>
+                    <script>
+                      $(function() {
+                        $('#flash').delay(3000).fadeOut(1000);
+                      });
+                    </script>
+                  <% } %>
+            
+            <% if(user.username == 'admin'){ %>
+            <a href="/destination/add">ADD</a>
+            <%}%>
+
+            <div class="destination_content_inside" id="myTable">
+                <% result.forEach(destination=> { %>
+                    <div class="destination_content_inside_card" >
+
+                        <div class="destination_card_content_image">
+                            <img src="/uploads/img/<%= destination.photo %>" onerror="this.onerror=null;this.src='/img/no-image-available.png';" id="<%= destination.name %>">
+                        </div>
+
+                        <div class="destination_card_content">
+                            <div class="destination_card_content_title">
+                                <a href="" class="destination_card_content_title_font">
+                                    <%= destination.name %>
+                                </a>
+                            </div>
+                            <div class="destination_card_content_location">
+                                <a href="/profile/:id" class="destination_card_content_location_font">
+                                    <%= destination.country %>,
+                                        <%= destination.province %>
+                                </a>
+                            </div>
+                            <div class="destination_card_content_category">
+                                <a href="" class="destination_card_content_category_font">
+                                    <%= destination.category %>
+                                </a>
+                            </div>
+
+                            <div class="destination_card_content_footer">                                
+                                <% if(user.username == 'admin'){ %>
+                                <a href="/destination/edit/<%=destination.id %>" class="destination_card_content_explored">Edit</a>
+                                <a href="/destination/delete/<%=destination.id %>" class="destination_card_content_explored">Delete</a>
+                                <%}%>
+
+                                    <div class="destination_card">
+                                        <a href="" class="destination_card_add">Add to plan</a>
+                                        <div class="pop_up_addto">
+                                            <div class="pop_up_addto_title">
+                                                <h4 class="pop_up_addto_title_font">Add to Plan</h4>
+                                            </div>
+                                            <div class="pop_up_plan_list">
+                                                <div class="pop_up_plan">
+                                                    <h4 class="pop_up_plan_list_font">Lebaran Plan</h4>
+                                                    <a href="" class="pop_up_plan_icon" ><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                </div>  
+                                                <div class="pop_up_plan">
+                                                    <h4 class="pop_up_plan_list_font">Natal Plan</h4>
+                                                    <a href="" class="pop_up_plan_icon" ><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                </div>  
+                                                <div class="pop_up_plan">
+                                                    <h4 class="pop_up_plan_list_font">Imlek Plan</h4>
+                                                    <a href="" class="pop_up_plan_icon" ><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                                </div>       
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </section>
+
+        <%- include('../partials/script'); %>
+</body>
+
+</html>
