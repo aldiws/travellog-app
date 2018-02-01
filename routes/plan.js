@@ -50,11 +50,12 @@ router.post('/addDestination/:planId/:userId/:destinationId',(req,res)=>{
       departureDate: req.body.departureDate,
       endsDate: req.body.endsDate
     }
-
+    
     PlanDestination.create(addDestination).then(()=>{
+
       res.redirect('/destination')
     }).catch((err)=>{
-      res.render('destination')
+      res.send(err)
     })
 })
 
@@ -108,20 +109,67 @@ router.get('/delete/:id', (req, res) => {
 })
 
 router.get('/joinDestination/:userId/:planId/:plan_destinationId/:departureDate/:endsDate', (req,res)=>{
-  console.log(req.params)
-  Joiners_Plan.findOrCreate({
-    where:{
-      Plan_DestinationsId: +req.params.plan_destinationId,
-      JoinId: +req.params.userId,
-    
-    },defaults:{
-      departureDate: req.params.departureDate,
-      endsDate: req.params.endsDate
-    }
-  }).spread((userResult,created)=>{
-    res.redirect('/')
-    }).catch((err)=>{
+  
+  // get from Data
+  let fromId = +req.params.userId
+  let toId = +req.params.planId
+  let planDestinationId = +req.params.plan_destinationId
+  let departureDate = req.params.departureDate
+  let endsDate = req.params.endsDate
+
+  User.findById(fromId).then((from)=>{
+    Plan.findById(toId,{
+      include: [User]
+    }).then((to)=>{
+      PlanDestination.findAll({
+        where:{
+          id: planDestinationId
+        },
+        include: [Destination]
+      }).then((locationName)=>{
+
+        const api_key = 'key-1bc10d31bcdaa98a4f7b7f1cf00733b7';
+        const domain = 'sandboxddb3930928a540688e9edd22a3e7d2a7.mailgun.org';
+        const mailgun = require('mailgun-js')({
+          apiKey: api_key,
+          domain: domain
+        });
+
+        var data = {
+          from: `<postmaster@sandboxddb3930928a540688e9edd22a3e7d2a7.mailgun.org>`,
+          to: `${to.User.email}`,
+          subject: 'TravelLog notification, somebody wants to join your plan',
+          text: `Hey ${to.User.firstName}, ${from.firstName} ${from.email} want to join to go to ${locationName[0].Destination.name} on your ${to.title} plan
+          Departure date ${departureDate} and Ends date ${endsDate}
+          ` 
+        };
+        mailgun.messages().send(data, function (error, body) {
+          if (error) {
+            console.log(error)
+          }else{
+            Joiners_Plan.findOrCreate({
+              where:{
+                Plan_DestinationsId: +req.params.plan_destinationId,
+                JoinId: +req.params.userId,
+              
+              },defaults:{
+                departureDate: req.params.departureDate,
+                endsDate: req.params.endsDate
+              }
+            }).spread((userResult,created)=>{
+                res.redirect('/')
+              }).catch((err)=>{
+            })
+          }
+        });
+      })    
+    })
   })
+
+})
+
+router.get('/join',(req,res)=>{
+  res.redirect('/')
 })
 
 router.get('/:id/addDestination', (req, res) => {

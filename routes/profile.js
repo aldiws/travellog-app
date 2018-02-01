@@ -30,14 +30,14 @@ router.get('/:id', (req,res)=>{
         PlanDestination.findAll({
             attributes:[
                 'PlanId',
-                'DestinationId'
+                'DestinationId',
+                'id'
             ],
             Where:{
                 UserId: userId
             },
             include: [Destination, Plan]
         }).then((hasil)=>{
-            
             res.render('profile', {userPlanData: project.Plans, userData: project, planDestination: hasil, err:null})
         })
       })
