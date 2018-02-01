@@ -4,11 +4,12 @@ const models = require('../models')
 const User = models.User
 
 router.get('/', (req, res) => {
+  console.log(req.session.userId, 'ini id user')
   User.findById(req.session.userId)
     .then((user) => {
       res.render('dashbord', {
         user: user,
-        title: 'Login',        
+        title: 'Login',
         section: 'users',
         error: null,
       })

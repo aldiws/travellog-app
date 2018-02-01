@@ -12,6 +12,8 @@ const multer = require('multer');
 const check_login = require('./helpers/auth').check_login;
 const flash_message = require('./helpers/message').flash_message;
 
+const favicon = require('serve-favicon')
+
 // view engine
 app.set('views', './views');
 app.set('view engine', 'ejs');
@@ -19,6 +21,7 @@ app.set('view engine', 'ejs');
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/profile/', express.static(path.join(__dirname + '/public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // body parser middleware
 app.use(bodyParser.json());

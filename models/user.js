@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
+          args: true,
           msg: 'first name not cannot empty.'
         },
         is: {
@@ -21,8 +22,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
+          args: true,
           msg: 'last name not cannot empty.'
         },
+        is: {
+          args: ["^[a-z]+$", 'i'],
+          msg: 'last name must a-z.'
+        }
       }
     },
     last_name: DataTypes.STRING,
@@ -34,6 +40,7 @@ module.exports = (sequelize, DataTypes) => {
           msg: "wrong format email"
         },
         notEmpty: {
+          args: true,
           msg: 'Email not null'
         },
         isUnique: function (value, next) {
@@ -53,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
               }
             })
             .catch(err => {
-              return next()
+              return next(err.message)
             })
         }
       }
@@ -70,8 +77,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       }
     }
-  }, 
-  {
+  }, {
     hooks: {
       beforeCreate: (user, options) => {
         return bcrypt.hash(user.password, 10)
