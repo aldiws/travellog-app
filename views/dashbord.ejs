@@ -1,29 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home Page</title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://use.fontawesome.com/05e7c788bc.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        .modal_join_email{
-            position: fixed;
-            z-index: 100;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,.6);
-            transform: translate(0,-120%);
-            transition: all 1s ease;
-        }
-    </style>
+        <%- include('./partials/metaHead'); %>
 </head>
 <body>
     
-        <%- include('./partials/modal'); %>
+    <%- include('./partials/modal'); %>
 
     <!-- Header -->
     <%- include('./partials/nav_dashbord',{userData:userData}); %>

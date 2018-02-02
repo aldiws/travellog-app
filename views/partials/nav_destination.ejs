@@ -26,6 +26,7 @@
             <span class="hnpe_top_email">
                 <%= userData.email%>
             </span>
+            <% if(userData.username !== 'admin'){ %>
             <a href="/profile" class="hnpe_top_seeAll">See Profile</a>
             </div>
             <div class="hnpe_mid">
@@ -33,7 +34,7 @@
                     <i class="fa fa-pencil hnpe_icon" aria-hidden="true"></i>
                     <h3 class="hnpe_mid_text_font">Edit Profile</h3>
                 </a>
-                <% if(userData.username !== 'admin'){ %>
+                
                     <a class="hnpe_mid_text" id="pop_up_button_profile">
                         <i class="fa fa-plus hnpe_icon" aria-hidden="true"></i>
                         <h3 class="hnpe_mid_text_font">Create Plan</h3>

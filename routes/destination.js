@@ -18,7 +18,6 @@ const User = models.User
 const Plan = models.Plan
 const PlanDestinations = models.PlanDestinations
 
-
 router.get('/', (req, res) => {
   let id = req.session.userId
   Destination.findAll()
@@ -35,7 +34,7 @@ router.get('/', (req, res) => {
               userData: resultUser,
               showUserPlan: hasil.Plans,
               err: null,
-              title : 'Destination List'
+              title: 'Destination List'
             })
           })
 

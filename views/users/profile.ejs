@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Profile</title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://use.fontawesome.com/05e7c788bc.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-
+        <%- include('../partials/metaHead'); %>
     <style>
         
     </style>
@@ -52,7 +44,7 @@
             </div>
             <div class="profile_nav_inner">
                 <a id="plan_open" class="provile_nav_inner_font">Plan</a>
-                <a id="edit_profile_open" class="provile_nav_inner_font">Edit Profile</a>
+                <a id="edit_profile_open" class="provile_nav_inner_font">Edit Profile</a>                
             </div>
         
             <div class="profile_user_content">
@@ -106,55 +98,6 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
-
-            $('#head_nav_add').click(function(){
-                $('body').css('overflow','hidden')
-                $('.modal_addPlan').css('transform','translate(0,0)')
-            })
-
-            $('.modal_plan_bottom_cancle').click(function(){
-                $('body').css('overflow','scroll')
-                $('.modal_addPlan').css('transform','translate(0,-100%)')
-            })
-
-            $('#pop_up_button_profile').click(function(){
-                $('body').css('overflow','hidden')
-                $('.modal_addPlan').css('transform','translate(0,0)')
-            })
-
-            $('#plan_open').click(function(){
-                $('#plan_profile').css('display','grid')
-                $('#accomplished_profile').css('display','none')
-            })
-
-            $('#accomplished_open').click(function(){
-                $('#plan_profile').css('display','none')
-                $('#accomplished_profile').css('display','grid')
-            })
-
-            $("#plan_submit").click(function(event){
-                var form_data=$("#plan").serializeArray();
-                var error_free=true;
-                for (var input in form_data){
-                    var element=$("#plan_"+form_data[input]['name']);
-                    var valid=element.val() != '';
-                    if(valid === false){
-                        error_free = false
-                    }
-                }
-
-                if (!error_free) {
-                    alert('Lenkapin!');
-                    // javascript:history.go(0)
-                }else{
-                    $('form#plan').submit()
-                }
-            });
-        });
-    
-    </script>
-
+    <%- include('../partials/script'); %>
 </body>
 </html>

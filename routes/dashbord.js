@@ -2,16 +2,15 @@ const express = require('express');
 const router = express.Router()
 
 const Op = require('sequelize').Op;
-const Models = require('../models')
-
-const Plan = Models.Plan
-const Destination = Models.Destination
-const User = Models.User
-const PlanDestination = Models.Plan_Destination
-const Joiners_Plan = Models.Joiners_Plan
-
+const models = require('../models')
+const Plan = models.Plan
+const Destination = models.Destination
+const User = models.User
+const PlanDestination = models.Plan_Destination
+const Joiners_Plan = models.Joiners_Plan
 
 let namaUsers = []
+
 router.get('/', (req, res) => {
   let id = req.session.userId
   if (id === 1) {
@@ -32,7 +31,6 @@ router.get('/', (req, res) => {
             UserId: id
           }
         }).then((hasilDariPlan) => {
-
           let kumpulanDariPlan = []
           for (let i = 0; i < hasilDariPlan.length; i++) {
             kumpulanDariPlan.push(hasilDariPlan[i].id)
@@ -76,6 +74,7 @@ router.get('/', (req, res) => {
               res.render('dashbord', {
                 userData: data,
                 userOtherData: values,
+                title : "home",
                 err: null
               })
             })
@@ -84,9 +83,7 @@ router.get('/', (req, res) => {
         })
       })
     })
-  }
-  console.log(namaUsers)
+  }  
 })
-
 
 module.exports = router

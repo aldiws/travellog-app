@@ -2,16 +2,15 @@ const express = require('express');
 const router = express.Router()
 
 const Op = require('sequelize').Op;
-const Models = require('../models')
-
-const Plan = Models.Plan
-const Destination = Models.Destination
-const User = Models.User
-const PlanDestination = Models.Plan_Destination
-const Joiners_Plan = Models.Joiners_Plan
-
+const models = require('../models')
+const Plan = models.Plan
+const Destination = models.Destination
+const User = models.User
+const PlanDestination = models.Plan_Destination
+const Joiners_Plan = models.Joiners_Plan
 
 let namaUsers = []
+
 router.get('/', (req, res) => {
   let id = req.session.userId
   User.findById(1).then((data) => {

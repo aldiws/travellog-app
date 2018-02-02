@@ -109,7 +109,7 @@ module.exports = (sequelize, DataTypes) => {
       })
   };
 
-  
+
   User.associate = function (models) {
     User.hasMany(models.Plan, {
       foreignKey: 'UserId'
@@ -126,7 +126,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.prototype.full_name = function () {
     return (`${this.first_name} ${this.last_name}`)
-  };  
+  };
 
 
   return User;

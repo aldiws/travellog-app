@@ -9,7 +9,6 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const multer = require('multer');
 
-
 const check_login = require('./helpers/auth').check_login;
 const flash_message = require('./helpers/message').flash_message;
 
@@ -41,25 +40,16 @@ app.use(session({
 }));
 app.use(flash_message);
 
-
 // set routes
 app.use('/', require('./routes/auth'));
 app.use('/destination', check_login, require('./routes/destination'));
-app.use('/settings', check_login, require('./routes/setting'));
-
-
-app.use('/profile', check_login, require('./routes/user'));
-
-
 app.use('/dashboard', check_login, require('./routes/dashbord'));
-app.use('/plan', require('./routes/plan'))
-
-
-
+app.use('/plan', check_login, require('./routes/plan'))
+app.use('/profile', check_login, require('./routes/user'));
+app.use('/settings', check_login, require('./routes/setting'));
 
 app.use((req, res, next) => {
 	res.render('error')
 });
-
 
 app.listen(port, () => console.log(`Express server listening on http://localhost:${port}`));
