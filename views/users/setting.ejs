@@ -2,24 +2,23 @@
 <html lang="en">
 
 <head>
-  
+
 </head>
 
-<body>    
+<body>
 
   <form action="" method="post">
     <input type="text" value="<%= user.username %>" name="username" readonly>
     <input type="text" value="<%= user.email %>" name="email" readonly>    
-    <input type="text" name="newpassword">        
   </form>
-<a href="/settings/<%= user.username%>"> Update Accout</a>
-<a style="color:red" onclick="myFunction()" href="/setting/<%= user.username %>/delete/<%= user.id %>" >Delete Acount</a>
+  <a href="/settings/<%= user.username%>"> Update Accout</a>
+  <a style="color:red" onclick="myFunctionDelete()" href="/settings/<%= user.username %>/delete/<%= user.id %>">Delete Acount</a>
 
-<script>
-function myFunction() {
-    confirm("Are you sure delete this account ?");
-}
-</script>
+  <script>
+    function myFunctionDelete() {
+      confirm("Are you sure delete this account ?");
+    }
+  </script>
 
 
 </body>

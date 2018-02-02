@@ -10,28 +10,11 @@
     <!-- Header -->
     <%- include('./partials/nav_dashbord',{userData:userData}); %>
 
-    <!-- Profile Body Content -->
-    <div class="wrapper_bodycontent">
-        <!-- Search Section -->
-        <section class="search_section">
-            <div class="search_section_banner">
-                <div class="search_section_banner_inside">
-                    <div class="search_section_banner_image">
-                         <img src="img/HomeBanner.jpg">
-                    </div>
-                    <div class="search_section_banner_message">
-                        <h2 class="search_section_banner_message_font">Showcase & Discover Valuable Destination</h2>
-                    </div>
-                </div>  
-            </div>
-            <form class="search_section_box" action="/dashboard/search" method="post">
-                <input class="search_section_box_inside" type="text" name="key_search" placeholder="Search TravelLog by..." autocomplete="off"/>
-            </form>
-        </section>
+    <%- include('./partials/search'); %>
 
         <!-- Gallery -->
         <section class="profile_content">
-            <div class="profile_content_inside">
+            <div class="profile_content_inside" id="myTable">
 
                 <%userOtherData.forEach(data =>{%>
                     <div class="profile_content_inside_card">

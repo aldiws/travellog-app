@@ -8,18 +8,7 @@
         <!-- Header -->
         <%- include('../partials/nav_destination',{userData:userData}); %>
         <%- include('../partials/search'); %>
-
-                <% if (typeof flashMessage !== 'undefined') { %>
-                    <div id="flash" class="ui error message">
-                        <%= flashMessage %>
-                    </div>
-                    <script>
-                        $(function () {
-                            $('#flash').delay(3000).fadeOut(1000);
-                        });
-                    </script>
-                    <% } %>
-
+                                    
 
                         <!-- Gallery -->
                         <section class="destination_content">
