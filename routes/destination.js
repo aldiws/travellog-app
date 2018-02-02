@@ -11,27 +11,38 @@ const Storage = multer.diskStorage({
     callback(null, fileName + file.originalname.split(' ').join('_').toLowerCase());
   },
 });
-const Models = require('../models')
-const Destination = Models.Destination
-const User = Models.User
 
+const models = require('../models')
+const Destination = models.Destination
+const User = models.User
+const Plan = models.Plan
+const PlanDestinations = models.PlanDestinations
 
 router.get('/', (req, res) => {
+  let id = req.session.userId
   Destination.findAll()
     .then((result) => {
-      User.findById(req.session.userId)
-        .then((user) => {
-          res.render('destination/destination', {
-            result: result,
-            user: user,
-            title: 'Destination',
+      User.findById(id)
+        .then((resultUser) => {
+          User.findById(id, {
+            include: [{
+              model: Plan
+            }]
+          }).then((hasil) => {
+            res.render('destination/destination', {
+              showData: result,
+              userData: resultUser,
+              showUserPlan: hasil.Plans,
+              err: null,
+              title: 'Destination List'
+            })
           })
+
         })
     })
-    .catch(err => {
-      res.send(err)
-    })
+
 })
+
 
 router.get('/add', (req, res) => {
   res.render('destination/add_destination', {
@@ -40,7 +51,6 @@ router.get('/add', (req, res) => {
 })
 
 router.post('/add', (req, res) => {
-
   const upload = multer({
     storage: Storage,
     limits: {
@@ -147,7 +157,7 @@ router.post('/edit/:id', (req, res) => {
       res.flash('Error uploading file max size 10MB')
       res.redirect('/destination')
     }
-    if (req.fileValidationError) {      
+    if (req.fileValidationError) {
       let id = req.params.id
       res.flash('Upload failed forbidden extension')
       Destination.findById(id)
@@ -155,7 +165,7 @@ router.post('/edit/:id', (req, res) => {
           res.render('', {
             result: result,
             title: 'Edit Destination',
-            section: 'destination',            
+            section: 'destination',
           })
         })
     }
@@ -176,6 +186,5 @@ router.get('/delete/:id', (req, res) => {
       res.send(err)
     })
 })
-
 
 module.exports = router

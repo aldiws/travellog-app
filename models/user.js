@@ -1,4 +1,5 @@
 'use strict';
+
 const bcrypt = require('bcrypt');
 const Op = require('sequelize').Op
 
@@ -108,9 +109,25 @@ module.exports = (sequelize, DataTypes) => {
       })
   };
 
+
+  User.associate = function (models) {
+    User.hasMany(models.Plan, {
+      foreignKey: 'UserId'
+    });
+
+    User.hasMany(models.Joiners_Plan, {
+      foreignKey: 'JoinId'
+    })
+
+    User.hasMany(models.Plan_Destination, {
+      foreignKey: 'UserId'
+    })
+  }
+
   User.prototype.full_name = function () {
     return (`${this.first_name} ${this.last_name}`)
   };
+
 
   return User;
 };

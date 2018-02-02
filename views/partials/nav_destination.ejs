@@ -1,90 +1,67 @@
-<div class="modal_addPlan">
-        <div class="modal_container">
-            <div class="modal_container_box">
-                <div class="modal_container_box_top">
-                    <h4 class="modal_container_box_top_font">Add Plan</h4>
-                </div>
-                <form class="modal_plan_form" action="/../../create plan" method="post">
-                    <input type="text" name="title" class="modal_createPlan_input_title" placeholder="Whats theme on your mind?">
-                    <textarea type="text" name="planDescription" class="modal_createPlan_input_description" placeholder="Tell your plan description"></textarea>
-                    <div class="form_three_line">
-                        <div class="departure_date_modal">
-                            <span class="date_modal_font">Departure Date</span>
-                            <input type="date" name="departureDate" class="modal_form_three_line_box" placeholder="Departure Date">
-                        </div>
-                        <div class="departure_date_modal">
-                            <span class="date_modal_font">Ends Date</span>
-                            <input type="date" name="duration" class="modal_form_three_line_box" placeholder="Ends Date">
-                        </div>
-    
-                    </div>
-                    <div class="modal_plan_bottom">
-                        <button class="modal_plan_bottom_execute">Create</button>
-                        <button type="button" id="close_modal" class="modal_plan_bottom_cancle">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<!-- Header -->
+<div class="header">
+    <div class="brand">
+        <a href="/dashboard" class="brand_font">TravelLog</a>
     </div>
+    <div class="hacktiv8Logo">
+        <img class="hacktiv8Logo_img" src="img/hacktiv8_logo.png">
+    </div>
+    <div class="head_navigation">
+        <a class="head_navigation_button" href="/logout">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
 
-    <!-- Header -->
-    <div class="header">
-        <div class="brand">
-            <a href="/dashboard" class="brand_font">TravelLog</a>
-        </div>
-        <div class="hacktiv8Logo">
-            <img class="hacktiv8Logo_img" src="img/hacktiv8_logo.png">
-        </div>
-        <div class="head_navigation">
-            <a class="head_navigation_button" href="/logout">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <div class="head_navigation_nest">
+            <a class="head_navigation_button head_nav_profile" href="/profile">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <div class="head_nav_profile_expand">
+                    <div class="hnpe_top">
+                        <div class="hnpe_top_image">
             </a>
-    
-            <div class="head_navigation_nest">
-                <a class="head_navigation_button head_nav_profile" href="/profile">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <div class="head_nav_profile_expand">
-                        <div class="hnpe_top">
-                            <div class="hnpe_top_image">
-                </a>            
-                <img src="/uploads/img/<%=  user.photo_profile %>" onerror="this.onerror=null;this.src='/img/no-image-available.png';">
-                </div>
-                <span class="hnpe_top_name"><%= user.full_name()%></span>
-                <span class="hnpe_top_email"><%= user.email%></span>
-                <a href="/profile" class="hnpe_top_seeAll">See Profile</a>
-                </div>
-                <div class="hnpe_mid">
-                    <a href="" class="hnpe_mid_text">
-                        <i class="fa fa-pencil hnpe_icon" aria-hidden="true"></i>
-                        <h3 class="hnpe_mid_text_font">Edit Profile</h3>
-                    </a>
-                    <% if(user.username !== 'admin'){ %>
+            <img src="/uploads/img/<%=  userData.photo_profile %>" onerror="this.onerror=null;this.src='/img/no-image-available.png';">
+            </div>
+            <span class="hnpe_top_name">
+                <%= userData.full_name()%>
+            </span>
+            <span class="hnpe_top_email">
+                <%= userData.email%>
+            </span>
+            <% if(userData.username !== 'admin'){ %>
+            <a href="/profile" class="hnpe_top_seeAll">See Profile</a>
+            </div>
+            <div class="hnpe_mid">
+                <a href="" class="hnpe_mid_text">
+                    <i class="fa fa-pencil hnpe_icon" aria-hidden="true"></i>
+                    <h3 class="hnpe_mid_text_font">Edit Profile</h3>
+                </a>
+                
                     <a class="hnpe_mid_text" id="pop_up_button_profile">
                         <i class="fa fa-plus hnpe_icon" aria-hidden="true"></i>
                         <h3 class="hnpe_mid_text_font">Create Plan</h3>
                     </a>
                     <%}%>
-                    <a href="" class="hnpe_mid_text">
-                        <i class="fa fa-sign-out hnpe_icon" aria-hidden="true"></i>
-                        <h3 class="hnpe_mid_text_font">Sign Out</h3>
-    
-                    </a>
-                </div>
-                </div>
-                </a>
+                        <a href="" class="hnpe_mid_text">
+                            <i class="fa fa-sign-out hnpe_icon" aria-hidden="true"></i>
+                            <h3 class="hnpe_mid_text_font">Sign Out</h3>
+
+                        </a>
             </div>
-            <% if(user.username !== 'admin'){ %>
+            </div>
+            </a>
+        </div>
+        <% if(userData.username !== 'admin'){ %>
             <a class="head_navigation_button" id="head_nav_add">
                 <i class="fa fa-plus" aria-hidden="true"></i>
-            </a>            
-            <%}%>
-            <a class="head_navigation_button" href="/dashboard"><i class="fa fa-users" aria-hidden="true"></i></a>
-
-            <% if(user.username !== 'admin'){ %>
-            <a onclick="topFunction()" id="head_nav_search" class="head_navigation_button">
-                <i class="fa fa-search" aria-hidden="true"></i>
             </a>
             <%}%>
-        </div>
+                <a class="head_navigation_button" href="/dashboard">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                </a>
+
+                <% if(userData.username !== 'admin'){ %>
+                    <a onclick="topFunction()" id="head_nav_search" class="head_navigation_button">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                    <%}%>
     </div>
-    
+</div>

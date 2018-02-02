@@ -11,21 +11,56 @@ const Storage = multer.diskStorage({
     callback(null, fileName + file.originalname.split(' ').join('_').toLowerCase());
   },
 });
+
 const models = require('../models')
+const Plan = models.Plan
+const Destination = models.Destination
 const User = models.User
+const PlanDestination = models.Plan_Destination
 
 router.get('/', (req, res) => {
   let id = req.session.userId
-  User.findById(id)
-    .then((user) => {
-      res.render('users/profile', {
-        user: user,
-        title: 'My Profile',
-        section: 'users',
-        error: null,
-      })
+  User.findById(id, {
+      include: [{
+        model: Plan,
+      }]
+    })
+    .then(project => {
+      for (let i = 0; i < project.Plans.length; i++) {
+        let departureString = project.Plans[i].departureDate + ''
+        let departureSubString = departureString.substr(4, 11)
+
+        let endsDateString = project.Plans[i].departureDate + ''
+        let endsDateSubString = endsDateString.substr(4, 11)
+
+        project.Plans[i].departureDate = departureSubString
+        project.Plans[i].endsDate = endsDateSubString
+      }
+
+      PlanDestination.findAll({
+          attributes: [
+            'PlanId',
+            'DestinationId',
+            'id'
+          ],
+          Where: {
+            UserId: id
+          },
+          include: [Destination, Plan]
+        })
+        .then((hasil) => {
+          console.log(hasil)
+          res.render('users/profile', {
+            userPlanData: project.Plans,
+            userData: project,
+            planDestination: hasil,
+            title: 'My Profile',
+            err: null
+          })
+        })
     })
 })
+
 
 router.get('/:username', (req, res, ) => {
   let id = req.session.userId

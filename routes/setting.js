@@ -73,7 +73,7 @@ router.post('/:username', (req, res, next) => {
 })
 
 
-router.get('/:username/delete', (req, res, next) => {
+router.get('/:username/delete/:id', (req, res, next) => {
   let id = req.session.userId
   User.destroy({
       where: {

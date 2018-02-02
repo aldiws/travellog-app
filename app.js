@@ -23,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/profile/', express.static(path.join(__dirname + '/public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
+
 // body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -39,14 +40,13 @@ app.use(session({
 }));
 app.use(flash_message);
 
-
 // set routes
 app.use('/', require('./routes/auth'));
-app.use('/dashboard', check_login, require('./routes/dashbord'));
 app.use('/destination', check_login, require('./routes/destination'));
+app.use('/dashboard', check_login, require('./routes/dashbord'));
+app.use('/plan', check_login, require('./routes/plan'))
 app.use('/profile', check_login, require('./routes/user'));
 app.use('/settings', check_login, require('./routes/setting'));
-
 
 app.use((req, res, next) => {
 	res.render('error')

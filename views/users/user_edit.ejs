@@ -11,13 +11,20 @@
 <body>
 
   <form action="/profile/<%= user.username %>" method="post" enctype="multipart/form-data">
-    <img src="/uploads/img/<%= user.photo_profile %>" alt="your image" height="200" width="300" />
-    <input type='file' name="photo_profile" accept=".jpg, .jpeg, .png" multiple />
+    <img src="/uploads/img/<%= user.photo_profile %>" alt="your image" height="200" width="300">
+    <br>
+    <input type='file' name="photo_profile" accept=".jpg, .jpeg, .png" multiple>
+    <br>
     <input type="text" value="<%= user.first_name %>" name="first_name">
+    <br>
     <input type="text" value="<%= user.last_name %>" name="last_name">
+    <br>
     <input type="text" value="<%= user.gender %>" name="gender">
+    <br>
     <input type="text" value="<%= user.about_me %>" name="about_me">
+    <br>
     <input type="text" value="<%= user.travel_style %>" name="travel_style">
+    <br>
     <input type="submit" value="submit">
   </form>
 
